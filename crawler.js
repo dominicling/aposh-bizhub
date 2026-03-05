@@ -17,23 +17,37 @@ if (!API_KEY) {
   process.exit(1);
 }
 
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
 async function askClaude(prompt) {
   const messages = [{ role: "user", content: prompt }];
   for (let turn = 0; turn < 8; turn++) {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": API_KEY,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-5",
-        max_tokens: 4000,
-        tools: [{ type: "web_search_20250305", name: "web_search" }],
-        messages,
-      }),
-    });
+    // Retry up to 4 times on rate limit
+    let res;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": API_KEY,
+          "anthropic-version": "2023-06-01",
+        },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-5",
+          max_tokens: 4000,
+          tools: [{ type: "web_search_20250305", name: "web_search" }],
+          messages,
+        }),
+      });
+      if (res.status === 429) {
+        const retryAfter = parseInt(res.headers.get("retry-after") || "0", 10);
+        const wait = Math.max(retryAfter * 1000, 120000); // at least 2 minutes
+        console.log(`    ⏳ Rate limited — waiting ${Math.round(wait/1000)}s then retrying... (attempt ${attempt+1}/4)`);
+        await sleep(wait);
+        continue;
+      }
+      break;
+    }
     if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
     const data = await res.json();
     const toolUse = data.content.filter((b) => b.type === "tool_use");
@@ -108,11 +122,15 @@ async function main() {
   const acc = { building: {}, companies: [], listings: {}, fnb: [] };
   for (let i = 0; i < PASSES.length; i++) {
     const p = PASSES[i];
+    if (i > 0) {
+      console.log("  ⏳ Waiting 2min between passes...");
+      await sleep(120000);
+    }
     console.log(`[${i+1}/${PASSES.length}] ${p.label}...`);
     try {
       const result = await askClaude(p.prompt);
       acc[p.key] = p.merge(acc[p.key], result);
-      if (p.key === "companies") console.log(`  → ${acc.companies.length} companies`);
+      if (p.key === "companies") console.log(`  → ${acc.companies.length} companies total`);
     } catch (e) { console.warn(`  ✗ ${e.message}`); }
   }
   const out = {

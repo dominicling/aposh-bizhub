@@ -1,9 +1,415 @@
 {
-  "building": {},
-  "companies": [],
-  "forSale": [],
-  "forRent": [],
-  "marketInsights": {},
+  "building": {
+    "address": "11 Yishun Industrial Street 1, Singapore 768089",
+    "developer": "OKH Global Ltd",
+    "tenure": "60-year Leasehold (from 2011)",
+    "totalUnits": "454",
+    "floors": "7",
+    "completionYear": "2013",
+    "type": "Light Industrial (B1) / Factory (B2)",
+    "description": "North Spring Bizhub is a 7-storey ramp-up business space development located in Yishun. It features 454 factory units with direct vehicular access for up to 40-foot containers, wide driveways, floor-to-ceiling heights up to 7m, column-free layouts, and good natural lighting and ventilation. The development includes two in-house eateries and ample parking facilities.",
+    "psf": "S$268 - S$1,819",
+    "nearbyMRT": [
+      "Yishun MRT (NS13)",
+      "Canberra MRT (NS12)",
+      "Khatib MRT (NS14)"
+    ],
+    "busList": [
+      "59191 - Opposite Northland Secondary School",
+      "59199 - Blk 250, Yishun Avenue 6",
+      "59201 - Opposite Chongfu Primary School",
+      "59209 - Blk 272, Yishun Avenue 6"
+    ],
+    "amenities": [
+      "Junction Nine",
+      "Northpoint City",
+      "Northpoint Shopping Centre",
+      "Sheng Siong Supermarket",
+      "Cold Storage",
+      "Shop 'N' Save",
+      "Khoo Teck Puat Hospital",
+      "Yishun Integrated Transport Hub"
+    ]
+  },
+  "companies": [
+    {
+      "name": "The Potters",
+      "unit": "#06-17",
+      "industry": "Pottery & Art Studio",
+      "phone": "+65 9779 4111",
+      "website": "https://www.thepotters1881.com"
+    },
+    {
+      "name": "SEA (Software Engineering Asia)",
+      "unit": "#07-03",
+      "industry": "Software Development",
+      "phone": "+65 9030 5959",
+      "website": "https://www.sea.sg"
+    },
+    {
+      "name": "Cordlife Group Limited",
+      "unit": "#06-01/09",
+      "industry": "Healthcare/Cord Blood Banking",
+      "phone": "+65 6238 0808",
+      "website": "https://www.cordlife.com/sg"
+    },
+    {
+      "name": "MSC Consulting (S) Pte Ltd",
+      "unit": "#04-27/28",
+      "industry": "IT Consultancy/ERP Solutions",
+      "phone": "+65 6317 2050",
+      "website": "https://www.msc-consulting.com.sg"
+    },
+    {
+      "name": "Baa Baa Sheepz",
+      "unit": "#06-20",
+      "industry": "Baby Products/Apparel",
+      "phone": "+65 6334 2822",
+      "website": "https://baabaasheepz.com"
+    },
+    {
+      "name": "Le Posh Design Pte Ltd",
+      "unit": "#03-09",
+      "industry": "Interior Design/Renovation",
+      "phone": "+65 6684 0286",
+      "website": ""
+    },
+    {
+      "name": "Enterprise Bizpal Pte Ltd",
+      "unit": "#03-25",
+      "industry": "Accounting Services",
+      "phone": "+65 3151 7308",
+      "website": ""
+    },
+    {
+      "name": "Corporate Advise Pte Ltd",
+      "unit": "#03-18",
+      "industry": "Business Consultancy",
+      "phone": "+65 9650 6736",
+      "website": "https://capl.com.sg"
+    },
+    {
+      "name": "New Industrial Partners",
+      "unit": "#07-27",
+      "industry": "Industrial Services",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Bliss & Reels Co.",
+      "unit": "",
+      "industry": "",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "AKL Technology Engineering & Services",
+      "unit": "",
+      "industry": "Engineering",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "ONSCAM (SG) PTE. LTD.",
+      "unit": "#03-20",
+      "industry": "Information Technology Consultancy",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "APEX BUILDING CONSTRUCTION PTE. LTD.",
+      "unit": "#08-27",
+      "industry": "General Contractors (Building Construction)",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "DATALINK CONNECT PTE. LTD.",
+      "unit": "#08-03A",
+      "industry": "Installation of Fire Protection and Security Alarm Systems",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "KE XIN CONSTRUCTION PTE. LTD.",
+      "unit": "#05-30",
+      "industry": "Building Construction N.E.C.",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "SSG BUSINESS CENTRE PTE. LTD.",
+      "unit": "#03-27",
+      "industry": "Training Courses N.E.C.",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "SID EVENT & WEDDING SERVICES",
+      "unit": "#07-30",
+      "industry": "Event/Concert Organisers",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "URBAN SHADES",
+      "unit": "#03-02",
+      "industry": "Retail Sale of Furnishings",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "NADIR",
+      "unit": "#07-14",
+      "industry": "Wholesale of Lighting and Lighting Accessories",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "CAPRIOUS MARKETING PTE. LTD.",
+      "unit": "#03-22",
+      "industry": "Management Consultancy Services",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "MSC CONSULTANTS PTE. LTD.",
+      "unit": "",
+      "industry": "",
+      "phone": "+65-63172050",
+      "website": "www.msc-consulting.com.sg"
+    },
+    {
+      "name": "Nivoca (S) Renovation Pte Ltd",
+      "unit": "01-02",
+      "industry": "Renovation Contractors",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Globalrider Trading Pte Ltd",
+      "unit": "01-08",
+      "industry": "Sports Apparel & Equipment Retail",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Ideal Home Furnishing",
+      "unit": "01-09",
+      "industry": "Home Furnishing",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Modern Lighting Concepts",
+      "unit": "01-10",
+      "industry": "Lighting",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Soon Hong Eating House",
+      "unit": "01-12",
+      "industry": "Food & Beverage",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Lush Design Pte Ltd",
+      "unit": "03-01",
+      "industry": "Interior Design",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Ngk Software House (S) Pte Ltd",
+      "unit": "03-02",
+      "industry": "Software Development",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Mimosa Renovation Interior Design",
+      "unit": "03-02",
+      "industry": "Interior Design & Renovation",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "BE Training Pte Ltd",
+      "unit": "03-02",
+      "industry": "Training & Education",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Adbox Advtg Pte Ltd",
+      "unit": "03-04",
+      "industry": "Advertising",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Web Imp Pte Ltd",
+      "unit": "03-05",
+      "industry": "Web Development & Digital Marketing",
+      "phone": "+65 6334 6659",
+      "website": "https://www.webimp.com.sg"
+    },
+    {
+      "name": "Aristo Decor Design",
+      "unit": "03-12",
+      "industry": "Interior Design",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "3i Network Pte Ltd",
+      "unit": "03-13",
+      "industry": "IT System Integrator",
+      "phone": "+65 6483 4833",
+      "website": "http://www.3inetwork.net"
+    },
+    {
+      "name": "Redicon Tec (S) Pte Ltd",
+      "unit": "03-15",
+      "industry": "Technology",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "MBE Trading & Services",
+      "unit": "03-16",
+      "industry": "Trading & Services",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Vin Sporting House Pte Ltd",
+      "unit": "03-17",
+      "industry": "Sports Equipment",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Psibertech Solutions Pte Ltd",
+      "unit": "03-18",
+      "industry": "Software Development",
+      "phone": "",
+      "website": "https://www.psibertech.com.sg"
+    },
+    {
+      "name": "D & D General Services Pte Ltd",
+      "unit": "03-19",
+      "industry": "General Services",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "Signature Photography & Videography",
+      "unit": "03-22",
+      "industry": "Photography & Videography",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "MY FIRST SIGN PTE. LTD.",
+      "unit": "#02-97",
+      "industry": "Manufacturing - Signs and Advertising Displays",
+      "phone": "+65 6612 4733",
+      "website": "myfirstsign.com.sg"
+    },
+    {
+      "name": "TRIPLE D TRADING PTE. LTD.",
+      "unit": "#02-92",
+      "industry": "Trading - Wholesale of Household Electrical Appliances",
+      "phone": "+65 6254 0445",
+      "website": ""
+    },
+    {
+      "name": "MAGUROYA TRADING",
+      "unit": "#05-99",
+      "industry": "Trading",
+      "phone": "",
+      "website": ""
+    },
+    {
+      "name": "PUI WEI TRADING",
+      "unit": "#04-105",
+      "industry": "Trading",
+      "phone": "",
+      "website": ""
+    }
+  ],
+  "forSale": [
+    {
+      "unit": "Ground Floor Unit",
+      "size": "1592 sqft",
+      "price": "S$1,150,000",
+      "psf": "S$722"
+    },
+    {
+      "unit": "General Industrial Unit",
+      "size": "1582 sqft",
+      "price": "S$788,888",
+      "psf": "S$499"
+    },
+    {
+      "unit": "Various Units",
+      "size": "1055-1658 sqft",
+      "price": "S$795,000-S$1,150,000",
+      "psf": "S$694-S$860"
+    }
+  ],
+  "forRent": [
+    {
+      "unit": "Fitted Unit",
+      "size": "435 sqft",
+      "monthlyRent": "S$1,850",
+      "psf": "S$4.25"
+    },
+    {
+      "unit": "Unit",
+      "size": "358 sqft",
+      "monthlyRent": "S$1,550",
+      "psf": "S$4.33"
+    },
+    {
+      "unit": "Unit",
+      "size": "500 sqft",
+      "monthlyRent": "S$2,200",
+      "psf": "S$4.40"
+    },
+    {
+      "unit": "Office Unit",
+      "size": "1550 sqft",
+      "monthlyRent": "S$2,850",
+      "psf": "S$1.84"
+    },
+    {
+      "unit": "Room 1+2",
+      "size": "450 sqft",
+      "monthlyRent": "S$2,950",
+      "psf": "S$6.56"
+    },
+    {
+      "unit": "Room 2+3",
+      "size": "520 sqft",
+      "monthlyRent": "S$3,700",
+      "psf": "S$7.12"
+    },
+    {
+      "unit": "Room 3+4",
+      "size": "600 sqft",
+      "monthlyRent": "S$3,700",
+      "psf": "S$6.17"
+    }
+  ],
+  "marketInsights": {
+    "avgSalePsf": "S$632-S$860",
+    "avgRentPsf": "S$4.25-S$7.12",
+    "trend": "Recent transactions show S$690 psf (Nov 2025) for 1,550 sqft unit and S$632 psf (May 2025) for 1,668 sqft unit. 12 units for sale and 41 units for rent available as of Feb 2026."
+  },
   "fnb": [],
-  "crawledAt": "2026-03-05T15:26:00.742Z"
+  "crawledAt": "2026-03-05T16:33:32.862Z"
 }
