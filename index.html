@@ -428,7 +428,7 @@
   <div class="tab-panel" id="tab-space">
     <p class="intro-text" style="margin-top:24px;">
       A'POSH BIZHUB offers a range of industrial units suitable for manufacturing, warehouse, and business park uses.
-      Browse available listings below or view all on PropertyGuru.
+      Browse available listings below or view all on CommercialGuru.
     </p>
 
     <!-- MARKET STATS -->
@@ -476,8 +476,8 @@
       </div>
       <div class="units-grid" id="units-grid"></div>
       <a class="see-all-btn" id="see-all-link"
-        href="https://www.propertyguru.com.sg/property-for-rent?search=true&listing_type=rent&freetext=aposh+bizhub"
-        target="_blank" rel="noopener">See all on PropertyGuru →</a>
+        href="https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent/at-a-posh-bizhub-21297"
+        target="_blank" rel="noopener">See all listings on CommercialGuru →</a>
     </div>
   </div><!-- end tab-space -->
 
@@ -661,9 +661,9 @@ function render() {
           <td>${or(u.size, '—')}</td>
           <td>${or(u.price, '—')}</td>
           <td>${or(u.psf, '—')}</td>
-          <td><a href="https://www.propertyguru.com.sg/property-for-sale?search=true&listing_type=sale&freetext=aposh+bizhub" target="_blank" rel="noopener">View →</a></td>
+          <td>${u.url ? `<a href="${u.url}" target="_blank" rel="noopener">View →</a>` : '—'}</td>
         </tr>`).join('')
-    : `<tr><td colspan="5" style="text-align:center;color:#999;padding:20px;">No sale data yet — run the crawler.</td></tr>`;
+    : `<tr><td colspan="5" style="text-align:center;color:#999;padding:20px;">No sale data yet.</td></tr>`;
 
   // Tenant mix
   renderTenantMix(companies);
@@ -726,10 +726,10 @@ function showListings(mode) {
   document.getElementById('toggle-rent').classList.toggle('active', mode === 'rent');
   document.getElementById('toggle-sale').classList.toggle('active', mode === 'sale');
 
-  const pgLink = mode === 'rent'
-    ? 'https://www.propertyguru.com.sg/property-for-rent?search=true&listing_type=rent&freetext=aposh+bizhub'
-    : 'https://www.propertyguru.com.sg/property-for-sale?search=true&listing_type=sale&freetext=aposh+bizhub';
-  document.getElementById('see-all-link').href = pgLink;
+  const cgSeeAll = mode === 'rent'
+    ? 'https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent/at-a-posh-bizhub-21297'
+    : 'https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297';
+  document.getElementById('see-all-link').href = cgSeeAll;
 
   const units = mode === 'rent' ? forRent : forSale;
   const grid = document.getElementById('units-grid');
@@ -740,11 +740,12 @@ function showListings(mode) {
   }
 
   grid.innerHTML = units.map(u => `
-    <a class="unit-card" href="${pgLink}" target="_blank" rel="noopener">
+    <a class="unit-card" href="${u.url || cgSeeAll}" target="_blank" rel="noopener">
       <div class="u-num">${or(u.unit, 'Unit —')}</div>
       <div class="u-size">${or(u.size, '—')}</div>
       <div class="u-price">${or(mode === 'rent' ? u.monthlyRent : u.price, '—')}</div>
-      ${u.psf ? `<div class="u-psf">$${u.psf} psf</div>` : ''}
+      ${u.psf && u.psf !== 'TBC' ? `<div class="u-psf">${u.psf} psf</div>` : ''}
+      ${u.notes ? `<div class="u-psf" style="color:var(--grey4)">${u.notes}</div>` : ''}
     </a>`).join('');
 }
 
