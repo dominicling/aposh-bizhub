@@ -77,13 +77,69 @@
       padding: 6px 14px; font-size: 0.8rem; cursor: pointer;
     }
     .btn-logout:hover { color: white; border-color: #888; }
-    .btn-export {
+    .btn-publish {
       background: #2e7d32; color: white;
       border: none; border-radius: 8px;
-      padding: 10px 22px; font-size: 0.88rem; font-weight: 700;
+      padding: 10px 20px; font-size: 0.88rem; font-weight: 700;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .btn-publish:hover { background: #1b5e20; }
+    .btn-publish:disabled { background: #555; cursor: not-allowed; }
+    .btn-export-sm {
+      background: transparent; color: #aaa;
+      border: 1px solid #444; border-radius: 6px;
+      padding: 6px 10px; font-size: 0.82rem; cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-export-sm:hover { color: white; border-color: #888; }
+
+    /* ── TOKEN BAR ── */
+    .token-bar {
+      background: white; border: 1px solid var(--grey2);
+      border-radius: 8px; padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+    .token-bar-row {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .token-bar label {
+      font-size: 0.78rem; font-weight: 700; color: var(--grey4);
+      text-transform: uppercase; letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .token-bar input {
+      flex: 1; min-width: 200px; padding: 7px 12px;
+      border: 1.5px solid var(--grey2); border-radius: 6px;
+      font-size: 0.88rem; font-family: monospace;
+    }
+    .token-bar input:focus { border-color: var(--orange); outline: none; }
+    .token-help {
+      font-size: 0.8rem; color: var(--orange); text-decoration: none;
+      white-space: nowrap;
+    }
+    .token-help:hover { text-decoration: underline; }
+
+    /* ── PUBLISH STATUS ── */
+    #publish-status {
+      margin-top: 10px; font-size: 0.88rem; font-weight: 600;
+      min-height: 22px; display: none;
+    }
+    #publish-status.info  { color: var(--grey4); display: block; }
+    #publish-status.ok    { color: var(--green); display: block; }
+    #publish-status.err   { color: var(--red);   display: block; }
+
+    /* ── BACKUP DOWNLOAD ── */
+    .backup-row {
+      margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-export {
+      background: var(--grey1); color: var(--grey4);
+      border: 1px solid var(--grey2); border-radius: 6px;
+      padding: 7px 16px; font-size: 0.82rem; font-weight: 600;
       cursor: pointer;
     }
-    .btn-export:hover { background: #1b5e20; }
+    .btn-export:hover { background: var(--grey2); }
 
     /* ── CONTENT ── */
     .content { max-width: 1300px; margin: 0 auto; padding: 20px 16px 48px; }
@@ -239,15 +295,26 @@
     <div class="topbar-title">🏭 A'POSH BIZHUB <span>Admin</span></div>
     <div class="topbar-right">
       <button class="btn-logout" onclick="logout()">Log out</button>
-      <button class="btn-export" onclick="exportData()">⬇ Download updated data.json</button>
+      <button class="btn-export-sm" onclick="exportData()">⬇ Backup</button>
+      <button class="btn-publish" id="btn-publish" onclick="publishToGitHub()">💾 Save &amp; Publish to Live Site</button>
     </div>
   </div>
 
   <div class="content">
 
-    <div class="export-note">
-      After downloading, replace <code>data.json</code> in your GitHub repo and run:<br>
-      <code>git add data.json &amp;&amp; git commit -m "fix: update company data" &amp;&amp; git push</code>
+    <div class="token-bar">
+      <div class="token-bar-row">
+        <label for="gh-token">GitHub Token</label>
+        <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+          oninput="saveToken(this.value)" autocomplete="off">
+        <a class="token-help" href="https://github.com/settings/tokens/new?scopes=repo&description=aposh-admin" target="_blank">Get token ↗</a>
+      </div>
+      <div id="publish-status"></div>
+    </div>
+
+    <div class="backup-row">
+      <span style="font-size:0.8rem;color:var(--grey3)">Backup:</span>
+      <button class="btn-export" onclick="exportData()">⬇ Download data.json</button>
     </div>
 
     <div class="stats-banner" id="stats-banner">Loading data…</div>
@@ -391,6 +458,8 @@ document.getElementById('pw-input').addEventListener('keydown', e => {
 function unlockAdmin() {
   document.getElementById('gate').style.display = 'none';
   document.getElementById('main').style.display = 'block';
+  const savedToken = sessionStorage.getItem('gh_token');
+  if (savedToken) document.getElementById('gh-token').value = savedToken;
   loadData();
 }
 
@@ -612,6 +681,63 @@ function exportData() {
   a.download = 'data.json';
   a.click();
   URL.revokeObjectURL(url);
+}
+
+/* ─────────────── PUBLISH TO GITHUB ─────────────── */
+function saveToken(val) {
+  sessionStorage.setItem('gh_token', val);
+}
+
+function setStatus(type, msg) {
+  const el = document.getElementById('publish-status');
+  el.className = type;
+  el.textContent = msg;
+}
+
+async function publishToGitHub() {
+  const token = document.getElementById('gh-token').value.trim();
+  if (!token) { setStatus('err', '⚠️ Please enter your GitHub Personal Access Token first.'); return; }
+  if (!DATA)  { setStatus('err', '⚠️ No data loaded.'); return; }
+  const btn = document.getElementById('btn-publish');
+  btn.disabled = true;
+  setStatus('info', '⏳ Saving to GitHub…');
+  try {
+    // 1. Get current SHA of data.json
+    const meta = await fetch(
+      'https://api.github.com/repos/dominicling/aposh-bizhub/contents/data.json',
+      { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github+json' } }
+    );
+    if (!meta.ok) throw new Error('Could not fetch file info (' + meta.status + ') — check token has repo scope');
+    const { sha } = await meta.json();
+
+    // 2. PUT updated content (base64-encoded)
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(DATA, null, 2))));
+    const res = await fetch(
+      'https://api.github.com/repos/dominicling/aposh-bizhub/contents/data.json',
+      {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'token ' + token,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'update: company data edited via admin',
+          content,
+          sha
+        })
+      }
+    );
+    if (!res.ok) {
+      const e = await res.json();
+      throw new Error(e.message || 'HTTP ' + res.status);
+    }
+    setStatus('ok', '✅ Published! Live site will update in ~2 minutes.');
+  } catch (err) {
+    setStatus('err', '❌ ' + err.message);
+  } finally {
+    btn.disabled = false;
+  }
 }
 </script>
 </body>
