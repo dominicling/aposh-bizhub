@@ -64,3 +64,13 @@ https://dominicling.github.io/aposh-bizhub/sitemap.xml
 
 ## Last updated
 March 2026
+
+## Blog
+
+Blog index: https://dominicling.github.io/aposh-bizhub/blog/
+
+### Post: Yishun B1 Building Comparison (March 2026)
+URL: https://dominicling.github.io/aposh-bizhub/blog/yishun-b1-comparison.html
+Summary: Side-by-side comparison of all four B1 bizhub buildings on Yishun Industrial Street 1 using actual URA transaction data (2025–2026). Covers A'POSH BIZHUB, North Spring Bizhub, North Point Bizhub, and North View Bizhub. Includes lease remaining, transacted PSF, building specifications, and verdict by buyer type (investor, logistics tenant, owner-occupier). Key finding: A'POSH commands highest PSF (S$632–690) due to 40-ft container ramp-up access, 6 cargo lifts, and 454 units (largest in cluster). North View Bizhub warning: 30-year lease with ~16 years remaining, financing difficult.
+Published: 2026-03-06
+Topics: B1 industrial, Yishun, strata factory, PSF comparison, lease decay, industrial investment Singapore
