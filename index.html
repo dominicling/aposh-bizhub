@@ -784,11 +784,10 @@
 
 <!-- TOP BAR -->
 <div id="topbar">
-  <div class="left">
+  <a class="left" href="index.html" style="text-decoration:none;color:inherit;">
     <div class="brand">🏭 A'POSH BIZHUB</div>
     <div class="addr">11 Yishun Industrial Street 1, Singapore 768089</div>
-  </div>
-  <div class="updated" id="updated-text">Loading data…</div>
+  </a>
 </div>
 
 <!-- STICKY NAV -->
@@ -1266,8 +1265,6 @@
 <!-- SITE FOOTER -->
 <footer id="site-footer">
   <span>A'POSH BIZHUB — 11 Yishun Industrial Street 1, Singapore 768089</span>
-  &nbsp;·&nbsp;
-  <span style="font-size:0.75rem;color:#9ca3af;">Data updated: March 2026</span>
 </footer>
 
 <script>
@@ -1341,11 +1338,6 @@ function render() {
   const forRent = DATA.forRent || [];
   const fnb = DATA.fnb || [];
   const mi = DATA.marketInsights || {};
-
-  // Top bar date
-  document.getElementById('updated-text').textContent = DATA.crawledAt
-    ? 'Data updated: ' + fmtDate(DATA.crawledAt)
-    : 'Data available';
 
   // Hero
   document.getElementById('hero-desc').textContent = or(b.description, 'A multi-tenanted industrial building in Yishun, Singapore, offering light industrial and business park units across multiple floors.');
