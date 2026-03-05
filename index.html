@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A'POSH BIZHUB — 11 Yishun Industrial Street 1</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #111;
+      --orange: #C84B0F;
+      --orange-light: #FDF3ED;
+      --orange-mid: #E8663A;
+      --white: #fff;
+      --grey1: #f5f5f5;
+      --grey2: #e0e0e0;
+      --grey3: #999;
+      --grey4: #555;
+      --grey5: #333;
+      --max-w: 1080px;
+    }
+
+    body { font-family: system-ui, -apple-system, sans-serif; color: var(--black); background: #fafafa; }
+
+    /* TOP BAR */
+    #topbar {
+      background: var(--black);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    #topbar .left { display: flex; flex-direction: column; gap: 2px; }
+    #topbar .brand { color: var(--white); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; }
+    #topbar .addr { color: var(--grey3); font-size: 0.8rem; }
+    #topbar .updated { color: var(--grey3); font-size: 0.75rem; text-align: right; }
+
+    /* STICKY NAV */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 2px solid var(--grey2);
+      display: flex;
+      gap: 0;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 14px 8px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--grey4);
+      border-bottom: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-btn:hover { color: var(--orange); }
+    .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+    /* CONTENT */
+    .content { max-width: var(--max-w); margin: 0 auto; padding: 0 16px 60px; }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #111 0%, #2a1a0e 100%);
+      color: var(--white);
+      padding: 48px 32px 40px;
+      margin: 0 -16px 32px;
+    }
+    .hero h1 { font-size: 2rem; font-weight: 800; letter-spacing: 0.01em; margin-bottom: 12px; }
+    .hero p { color: #ccc; line-height: 1.6; max-width: 680px; margin-bottom: 28px; font-size: 0.95rem; }
+    .stats-row { display: flex; flex-wrap: wrap; gap: 24px; }
+    .stat-box { text-align: center; }
+    .stat-val { font-size: 1.5rem; font-weight: 700; color: var(--orange-mid); }
+    .stat-label { font-size: 0.72rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+    /* TWO COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 36px; }
+    @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--grey2);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .info-card h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--grey3); margin-bottom: 12px; }
+    .info-card .big-addr { font-size: 1rem; font-weight: 600; margin-bottom: 12px; line-height: 1.4; }
+    .dir-link { display: inline-block; margin-bottom: 16px; color: var(--orange); font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .dir-link:hover { text-decoration: underline; }
+
+    .mrt-list { list-style: none; margin-bottom: 12px; }
+    .mrt-list li { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 0.85rem; color: var(--grey5); }
+    .mrt-list li::before { content: "🚇"; font-size: 0.9rem; }
+
+    .bus-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .bus-chip {
+      background: var(--grey1);
+      border: 1px solid var(--grey2);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--grey5);
+    }
+
+    .map-frame { width: 100%; height: 260px; border: 0; border-radius: 10px; }
+
+    /* SECTION TITLES */
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--orange-light);
+    }
+
+    /* SEARCH */
+    .search-wrap { margin-bottom: 20px; }
+    .search-input {
+      width: 100%;
+      padding: 10px 16px;
+      border: 1px solid var(--grey2);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search-input:focus { border-color: var(--orange); }
+
+    /* COMPANY CARDS */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+    .company-card {
+      background: var(--white);
+      border: 1px solid var(--grey2);
+      border-radius: 10px;
+      padding: 16px;
+      transition: box-shadow 0.15s;
+    }
+    .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .company-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; line-height: 1.3; }
+    .industry-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .company-meta { font-size: 0.8rem; color: var(--grey4); display: flex; flex-direction: column; gap: 4px; }
+    .company-meta a { color: var(--orange); text-decoration: none; }
+    .company-meta a:hover { text-decoration: underline; }
+    .unit-tag { font-size: 0.72rem; color: var(--grey3); margin-bottom: 4px; }
+
+    /* F&B CARDS */
+    .fnb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+    .fnb-card {
+      background: var(--white);
+      border: 1px solid var(--grey2);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .fnb-card.in-building { border: 2px solid var(--orange); }
+    .fnb-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+    .fnb-type { font-size: 0.78rem; color: var(--grey3); margin-bottom: 8px; }
+    .fnb-meta { font-size: 0.8rem; color: var(--grey5); display: flex; flex-direction: column; gap: 3px; }
+    .in-building-tag {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    /* EMPTY STATE */
+    .empty { color: var(--grey3); font-size: 0.9rem; padding: 32px 0; text-align: center; }
+
+    /* TAB 2 — FIND SPACE */
+    .intro-text { color: var(--grey5); line-height: 1.6; margin-bottom: 24px; font-size: 0.95rem; }
+    .market-stats { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; }
+    .market-stat {
+      background: var(--orange-light);
+      border: 1px solid #f0d5c5;
+      border-radius: 10px;
+      padding: 16px 24px;
+      min-width: 160px;
+    }
+    .market-stat .val { font-size: 1.4rem; font-weight: 700; color: var(--orange); }
+    .market-stat .lbl { font-size: 0.72rem; color: var(--grey4); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+    .market-stat .trend-text { font-size: 0.85rem; color: var(--grey5); max-width: 300px; }
+
+    /* SPECS TABLE */
+    .specs-table { width: 100%; border-collapse: collapse; margin-bottom: 28px; font-size: 0.88rem; }
+    .specs-table td { padding: 9px 12px; border-bottom: 1px solid var(--grey2); }
+    .specs-table td:first-child { color: var(--grey4); width: 40%; font-weight: 500; background: var(--grey1); }
+    .specs-table td:last-child { color: var(--grey5); font-weight: 600; }
+
+    /* AMENITIES */
+    .amenities-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+    .amenities-list li { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--grey5); }
+    .amenities-list li::before { content: "✓"; color: var(--orange); font-weight: 700; }
+
+    /* TOGGLE BUTTONS */
+    .toggle-group { display: flex; gap: 0; margin-bottom: 20px; border: 1px solid var(--grey2); border-radius: 8px; overflow: hidden; width: fit-content; }
+    .toggle-btn {
+      padding: 9px 24px;
+      border: none;
+      background: var(--white);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--grey4);
+      transition: background 0.15s, color 0.15s;
+    }
+    .toggle-btn.active { background: var(--orange); color: var(--white); }
+
+    /* UNIT CARDS */
+    .units-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .unit-card {
+      background: var(--white);
+      border: 1px solid var(--grey2);
+      border-radius: 10px;
+      padding: 16px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+    .unit-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.09); border-color: var(--orange); }
+    .unit-card .u-num { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+    .unit-card .u-size { font-size: 0.82rem; color: var(--grey3); margin-bottom: 8px; }
+    .unit-card .u-price { font-size: 1.1rem; font-weight: 700; color: var(--orange); }
+    .unit-card .u-psf { font-size: 0.75rem; color: var(--grey3); margin-top: 2px; }
+
+    .see-all-btn {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      background: var(--orange-light);
+      border: 1px solid var(--orange);
+      border-radius: 8px;
+      color: var(--orange);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.15s;
+    }
+    .see-all-btn:hover { background: var(--orange); color: var(--white); }
+
+    /* TAB 3 — OWNERS */
+    .owner-stats { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; }
+    .owner-stat {
+      background: var(--white);
+      border: 1px solid var(--grey2);
+      border-radius: 10px;
+      padding: 16px 24px;
+      min-width: 150px;
+    }
+    .owner-stat .val { font-size: 1.3rem; font-weight: 700; color: var(--orange); }
+    .owner-stat .lbl { font-size: 0.72rem; color: var(--grey4); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+    .trend-block {
+      background: var(--orange-light);
+      border-left: 4px solid var(--orange);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 28px;
+      font-size: 0.9rem;
+      color: var(--grey5);
+      line-height: 1.6;
+    }
+
+    /* COMPARABLES TABLE */
+    .comp-table { width: 100%; border-collapse: collapse; margin-bottom: 28px; font-size: 0.85rem; }
+    .comp-table th { background: var(--black); color: var(--white); padding: 10px 12px; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .comp-table td { padding: 9px 12px; border-bottom: 1px solid var(--grey2); color: var(--grey5); }
+    .comp-table tr:hover td { background: var(--grey1); }
+    .comp-table a { color: var(--orange); text-decoration: none; }
+    .comp-table a:hover { text-decoration: underline; }
+
+    /* TENANT MIX */
+    .tenant-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 28px; }
+    .tenant-card {
+      background: var(--white);
+      border: 1px solid var(--grey2);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .tenant-card .t-cat { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+    .tenant-card .t-count { font-size: 0.78rem; color: var(--grey3); margin-bottom: 8px; }
+    .bar-track { height: 6px; background: var(--grey2); border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 3px; }
+
+    /* BUILDING FACTS GRID */
+    .facts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 28px; }
+    .fact-box {
+      background: var(--white);
+      border: 1px solid var(--grey2);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .fact-box .f-key { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--grey3); margin-bottom: 6px; }
+    .fact-box .f-val { font-size: 1rem; font-weight: 700; color: var(--grey5); }
+
+    /* ERROR BANNER */
+    #error-banner {
+      display: none;
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      color: #7a5300;
+      font-size: 0.9rem;
+    }
+
+    /* SECTION SPACING */
+    .section { margin-bottom: 40px; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <div class="left">
+    <div class="brand">🏭 A'POSH BIZHUB</div>
+    <div class="addr">11 Yishun Industrial Street 1, Singapore 768089</div>
+  </div>
+  <div class="updated" id="updated-text">Loading data…</div>
+</div>
+
+<!-- STICKY NAV -->
+<div id="nav">
+  <button class="tab-btn active" data-tab="visit">Visit &amp; Find</button>
+  <button class="tab-btn" data-tab="space">Find Space</button>
+  <button class="tab-btn" data-tab="owners">Owners</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+  <div id="error-banner">⚠️ Data not loaded yet. Please run the crawler.</div>
+
+  <!-- TAB 1: VISIT & FIND -->
+  <div class="tab-panel active" id="tab-visit">
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1 id="hero-title">A'POSH BIZHUB</h1>
+      <p id="hero-desc">Loading building information…</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val" id="s-units">—</div><div class="stat-label">Total Units</div></div>
+        <div class="stat-box"><div class="stat-val" id="s-floors">—</div><div class="stat-label">Floors</div></div>
+        <div class="stat-box"><div class="stat-val" id="s-year">—</div><div class="stat-label">Year Built</div></div>
+        <div class="stat-box"><div class="stat-val" id="s-tenants">—</div><div class="stat-label">Tenants Found</div></div>
+      </div>
+    </div>
+
+    <!-- ADDRESS + MAP -->
+    <div class="two-col section">
+      <div class="info-card">
+        <h3>Location</h3>
+        <div class="big-addr">11 Yishun Industrial Street 1<br>Singapore 768089</div>
+        <a class="dir-link" href="https://www.google.com/maps/dir/?api=1&destination=11+Yishun+Industrial+Street+1+Singapore+768089" target="_blank" rel="noopener">📍 Get Directions →</a>
+        <h3 style="margin-bottom:8px;">Nearby MRT</h3>
+        <ul class="mrt-list" id="mrt-list"><li>Loading…</li></ul>
+        <h3 style="margin-bottom:8px;">Bus Services</h3>
+        <div class="bus-chips" id="bus-chips"></div>
+      </div>
+      <div class="info-card" style="padding:0;overflow:hidden;">
+        <iframe
+          class="map-frame"
+          src="https://maps.google.com/maps?q=11+Yishun+Industrial+Street+1+Singapore+768089&output=embed&z=15"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- FIND A BUSINESS -->
+    <div class="section">
+      <div class="section-title">Find a Business</div>
+      <div class="search-wrap">
+        <input class="search-input" id="company-search" type="text" placeholder="Search by company name or industry…" />
+      </div>
+      <div class="cards-grid" id="company-cards"></div>
+    </div>
+
+    <!-- F&B -->
+    <div class="section">
+      <div class="section-title">Food &amp; Drink Nearby</div>
+      <div class="fnb-grid" id="fnb-cards"></div>
+    </div>
+
+  </div><!-- end tab-visit -->
+
+  <!-- TAB 2: FIND SPACE -->
+  <div class="tab-panel" id="tab-space">
+    <p class="intro-text" style="margin-top:24px;">
+      A'POSH BIZHUB offers a range of industrial units suitable for manufacturing, warehouse, and business park uses.
+      Browse available listings below or view all on PropertyGuru.
+    </p>
+
+    <!-- MARKET STATS -->
+    <div class="market-stats">
+      <div class="market-stat">
+        <div class="val" id="avg-rent-psf">—</div>
+        <div class="lbl">Avg Rent PSF / mo</div>
+      </div>
+      <div class="market-stat">
+        <div class="val" id="avg-sale-psf">—</div>
+        <div class="lbl">Avg Sale PSF</div>
+      </div>
+      <div class="market-stat" style="flex:1;min-width:220px;">
+        <div class="trend-text" id="market-trend">—</div>
+        <div class="lbl" style="margin-top:6px;">Market Trend</div>
+      </div>
+    </div>
+
+    <!-- BUILDING SPECS -->
+    <div class="section">
+      <div class="section-title">Building Specifications</div>
+      <table class="specs-table">
+        <tr><td>Address</td><td>11 Yishun Industrial Street 1, Singapore 768089</td></tr>
+        <tr><td>Type</td><td id="spec-type">—</td></tr>
+        <tr><td>Developer</td><td id="spec-dev">—</td></tr>
+        <tr><td>Tenure</td><td id="spec-tenure">—</td></tr>
+        <tr><td>Floors</td><td id="spec-floors">—</td></tr>
+        <tr><td>Total Units</td><td id="spec-units">454</td></tr>
+        <tr><td>Completion Year</td><td id="spec-year">—</td></tr>
+      </table>
+    </div>
+
+    <!-- AMENITIES -->
+    <div class="section">
+      <div class="section-title">Amenities</div>
+      <ul class="amenities-list" id="amenities-list"></ul>
+    </div>
+
+    <!-- LISTINGS -->
+    <div class="section">
+      <div class="section-title">Available Units</div>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="toggle-rent" onclick="showListings('rent')">For Rent</button>
+        <button class="toggle-btn" id="toggle-sale" onclick="showListings('sale')">For Sale</button>
+      </div>
+      <div class="units-grid" id="units-grid"></div>
+      <a class="see-all-btn" id="see-all-link"
+        href="https://www.propertyguru.com.sg/property-for-rent?search=true&listing_type=rent&freetext=aposh+bizhub"
+        target="_blank" rel="noopener">See all on PropertyGuru →</a>
+    </div>
+  </div><!-- end tab-space -->
+
+  <!-- TAB 3: OWNERS -->
+  <div class="tab-panel" id="tab-owners">
+    <div style="margin-top:24px;"></div>
+
+    <!-- OWNER STATS -->
+    <div class="owner-stats">
+      <div class="owner-stat"><div class="val" id="o-sale-psf">—</div><div class="lbl">Avg Sale PSF</div></div>
+      <div class="owner-stat"><div class="val" id="o-rent-psf">—</div><div class="lbl">Avg Rent PSF / mo</div></div>
+      <div class="owner-stat"><div class="val" id="o-for-sale">—</div><div class="lbl">Units For Sale</div></div>
+    </div>
+
+    <!-- TREND -->
+    <div class="trend-block" id="o-trend">Loading market data…</div>
+
+    <!-- SALE COMPARABLES -->
+    <div class="section">
+      <div class="section-title">Sale Comparables</div>
+      <table class="comp-table">
+        <thead>
+          <tr><th>Unit</th><th>Size</th><th>Price</th><th>PSF</th><th>Link</th></tr>
+        </thead>
+        <tbody id="comp-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- TENANT MIX -->
+    <div class="section">
+      <div class="section-title">Tenant Mix</div>
+      <div class="tenant-cards" id="tenant-mix"></div>
+    </div>
+
+    <!-- BUILDING FACTS -->
+    <div class="section">
+      <div class="section-title">Building Facts</div>
+      <div class="facts-grid" id="facts-grid"></div>
+    </div>
+  </div><!-- end tab-owners -->
+
+</div><!-- end content -->
+
+<script>
+// ── DATA ────────────────────────────────────────────────────────────────────
+let DATA = null;
+let currentListingMode = 'rent';
+
+const INDUSTRY_COLORS = {
+  manufacturing: '#6B3FA0',
+  trading:       '#1560A8',
+  services:      '#1A7A4A',
+  logistics:     '#B35A00',
+  technology:    '#0A6E8A',
+  fnb:           '#B52020',
+  retail:        '#A0238C',
+  others:        '#555',
+};
+
+function getCategory(industry) {
+  if (!industry) return 'others';
+  const s = industry.toLowerCase();
+  if (s.includes('manufactur')) return 'manufacturing';
+  if (s.includes('trading') || s.includes('trade') || s.includes('import') || s.includes('export')) return 'trading';
+  if (s.includes('logistic') || s.includes('freight') || s.includes('transport') || s.includes('warehou')) return 'logistics';
+  if (s.includes('tech') || s.includes('software') || s.includes('it ') || s.includes('digital')) return 'technology';
+  if (s.includes('food') || s.includes('f&b') || s.includes('restaurant') || s.includes('cafe') || s.includes('catering')) return 'fnb';
+  if (s.includes('retail') || s.includes('shop') || s.includes('store')) return 'retail';
+  if (s.includes('service') || s.includes('consult') || s.includes('agency')) return 'services';
+  return 'others';
+}
+
+function badgeColor(industry) {
+  return INDUSTRY_COLORS[getCategory(industry)] || INDUSTRY_COLORS.others;
+}
+
+function capFirst(s) {
+  if (!s) return '—';
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function or(v, fallback) {
+  return (v && v !== '' && v !== 'N/A' && v !== 'null') ? v : fallback;
+}
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  try {
+    return new Date(iso).toLocaleDateString('en-SG', { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch { return iso; }
+}
+
+// ── FETCH DATA ───────────────────────────────────────────────────────────────
+fetch('data.json')
+  .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
+  .then(d => {
+    DATA = d;
+    render();
+  })
+  .catch(() => {
+    document.getElementById('error-banner').style.display = 'block';
+    document.getElementById('updated-text').textContent = 'Data not available';
+    // Render empty state
+    renderEmptyState();
+  });
+
+// ── RENDER ───────────────────────────────────────────────────────────────────
+function render() {
+  const b = DATA.building || {};
+  const companies = DATA.companies || [];
+  const forSale = DATA.forSale || [];
+  const forRent = DATA.forRent || [];
+  const fnb = DATA.fnb || [];
+  const mi = DATA.marketInsights || {};
+
+  // Top bar date
+  document.getElementById('updated-text').textContent = DATA.crawledAt
+    ? 'Data updated: ' + fmtDate(DATA.crawledAt)
+    : 'Data available';
+
+  // Hero
+  document.getElementById('hero-desc').textContent = or(b.description, 'A multi-tenanted industrial building in Yishun, Singapore, offering light industrial and business park units across multiple floors.');
+  document.getElementById('s-units').textContent = or(b.totalUnits, '454');
+  document.getElementById('s-floors').textContent = or(b.floors, '—');
+  document.getElementById('s-year').textContent = or(b.completionYear, '—');
+  document.getElementById('s-tenants').textContent = companies.length > 0 ? companies.length : '—';
+
+  // MRT list
+  const mrtList = document.getElementById('mrt-list');
+  const mrts = b.nearbyMRT && b.nearbyMRT.length ? b.nearbyMRT : ['Yishun MRT (NS13)', 'Khatib MRT (NS14)'];
+  mrtList.innerHTML = mrts.map(m => `<li>${m}</li>`).join('');
+
+  // Bus chips
+  const busChips = document.getElementById('bus-chips');
+  const buses = b.busList && b.busList.length ? b.busList : [];
+  busChips.innerHTML = buses.length
+    ? buses.map(b => `<span class="bus-chip">${b}</span>`).join('')
+    : '<span style="font-size:0.82rem;color:#999;">No data yet</span>';
+
+  // Company cards
+  renderCompanyCards(companies);
+
+  // F&B
+  renderFnbCards(fnb);
+
+  // TAB 2: Specs
+  document.getElementById('spec-type').textContent = or(b.type, 'Light Industrial / Business Park');
+  document.getElementById('spec-dev').textContent = or(b.developer, '—');
+  document.getElementById('spec-tenure').textContent = or(b.tenure, '—');
+  document.getElementById('spec-floors').textContent = or(b.floors, '—');
+  document.getElementById('spec-units').textContent = or(b.totalUnits, '454');
+  document.getElementById('spec-year').textContent = or(b.completionYear, '—');
+
+  // Amenities
+  const amenList = document.getElementById('amenities-list');
+  const amenities = b.amenities && b.amenities.length
+    ? b.amenities
+    : ['Loading dock', 'Passenger lifts', 'Cargo lifts', '24-hour security', 'Car park'];
+  amenList.innerHTML = amenities.map(a => `<li>${a}</li>`).join('');
+
+  // Market stats
+  document.getElementById('avg-rent-psf').textContent = or(mi.avgRentPsf, '—');
+  document.getElementById('avg-sale-psf').textContent = or(mi.avgSalePsf, '—');
+  document.getElementById('market-trend').textContent = or(mi.trend, 'Market data will appear after the crawler runs.');
+
+  // Listings
+  showListings('rent');
+
+  // TAB 3: Owners
+  document.getElementById('o-sale-psf').textContent = or(mi.avgSalePsf, '—');
+  document.getElementById('o-rent-psf').textContent = or(mi.avgRentPsf, '—');
+  document.getElementById('o-for-sale').textContent = forSale.length > 0 ? forSale.length : '—';
+  document.getElementById('o-trend').textContent = or(mi.trend, 'Market trend data will appear after the crawler runs with API credits.');
+
+  // Comparables table
+  const tbody = document.getElementById('comp-tbody');
+  tbody.innerHTML = forSale.length
+    ? forSale.map(u => `
+        <tr>
+          <td>${or(u.unit, '—')}</td>
+          <td>${or(u.size, '—')}</td>
+          <td>${or(u.price, '—')}</td>
+          <td>${or(u.psf, '—')}</td>
+          <td><a href="https://www.propertyguru.com.sg/property-for-sale?search=true&listing_type=sale&freetext=aposh+bizhub" target="_blank" rel="noopener">View →</a></td>
+        </tr>`).join('')
+    : `<tr><td colspan="5" style="text-align:center;color:#999;padding:20px;">No sale data yet — run the crawler.</td></tr>`;
+
+  // Tenant mix
+  renderTenantMix(companies);
+
+  // Building facts
+  renderFacts(b, companies, forSale, forRent);
+}
+
+function renderEmptyState() {
+  document.getElementById('hero-desc').textContent = 'Run the crawler to populate data.';
+  ['mrt-list'].forEach(id => { const el = document.getElementById(id); if (el) el.innerHTML = '<li>—</li>'; });
+  document.getElementById('company-cards').innerHTML = '<p class="empty">No company data yet.</p>';
+  document.getElementById('fnb-cards').innerHTML = '<p class="empty">No F&amp;B data yet.</p>';
+  document.getElementById('units-grid').innerHTML = '<p class="empty">No listing data yet.</p>';
+  document.getElementById('tenant-mix').innerHTML = '<p class="empty">No tenant data yet.</p>';
+}
+
+function renderCompanyCards(companies) {
+  const container = document.getElementById('company-cards');
+  if (!companies.length) {
+    container.innerHTML = '<p class="empty">No company data yet — run the crawler to populate.</p>';
+    return;
+  }
+  container.innerHTML = companies.map(c => `
+    <div class="company-card" data-name="${(c.name||'').toLowerCase()}" data-industry="${(c.industry||'').toLowerCase()}">
+      ${c.unit ? `<div class="unit-tag">Unit ${c.unit}</div>` : ''}
+      <div class="company-name">${c.name || 'Unknown'}</div>
+      <span class="industry-badge" style="background:${badgeColor(c.industry)}">${capFirst(c.industry) || 'Others'}</span>
+      <div class="company-meta">
+        ${c.phone ? `<span>📞 ${c.phone}</span>` : ''}
+        ${c.website ? `<a href="${c.website.startsWith('http') ? c.website : 'https://'+c.website}" target="_blank" rel="noopener">🌐 ${c.website}</a>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+function renderFnbCards(fnb) {
+  const container = document.getElementById('fnb-cards');
+  if (!fnb.length) {
+    container.innerHTML = '<p class="empty">No F&amp;B data yet — run the crawler to populate.</p>';
+    return;
+  }
+  container.innerHTML = fnb.map(f => `
+    <div class="fnb-card${f.inBuilding ? ' in-building' : ''}">
+      ${f.inBuilding ? '<span class="in-building-tag">IN BUILDING</span>' : ''}
+      <div class="fnb-name">${f.name || '—'}</div>
+      <div class="fnb-type">${[f.type, f.cuisine].filter(Boolean).join(' · ') || '—'}</div>
+      <div class="fnb-meta">
+        ${f.distance ? `<span>📍 ${f.distance}</span>` : ''}
+        ${f.openHours ? `<span>🕐 ${f.openHours}</span>` : ''}
+        ${f.priceRange ? `<span>💰 ${f.priceRange}</span>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+function showListings(mode) {
+  currentListingMode = mode;
+  const forSale = DATA ? DATA.forSale || [] : [];
+  const forRent = DATA ? DATA.forRent || [] : [];
+
+  document.getElementById('toggle-rent').classList.toggle('active', mode === 'rent');
+  document.getElementById('toggle-sale').classList.toggle('active', mode === 'sale');
+
+  const pgLink = mode === 'rent'
+    ? 'https://www.propertyguru.com.sg/property-for-rent?search=true&listing_type=rent&freetext=aposh+bizhub'
+    : 'https://www.propertyguru.com.sg/property-for-sale?search=true&listing_type=sale&freetext=aposh+bizhub';
+  document.getElementById('see-all-link').href = pgLink;
+
+  const units = mode === 'rent' ? forRent : forSale;
+  const grid = document.getElementById('units-grid');
+
+  if (!units.length) {
+    grid.innerHTML = '<p class="empty">No listing data yet — run the crawler to populate.</p>';
+    return;
+  }
+
+  grid.innerHTML = units.map(u => `
+    <a class="unit-card" href="${pgLink}" target="_blank" rel="noopener">
+      <div class="u-num">${or(u.unit, 'Unit —')}</div>
+      <div class="u-size">${or(u.size, '—')}</div>
+      <div class="u-price">${or(mode === 'rent' ? u.monthlyRent : u.price, '—')}</div>
+      ${u.psf ? `<div class="u-psf">$${u.psf} psf</div>` : ''}
+    </a>`).join('');
+}
+
+function renderTenantMix(companies) {
+  const container = document.getElementById('tenant-mix');
+  if (!companies.length) {
+    container.innerHTML = '<p class="empty">No tenant data yet.</p>';
+    return;
+  }
+  const counts = {};
+  for (const c of companies) {
+    const cat = getCategory(c.industry);
+    counts[cat] = (counts[cat] || 0) + 1;
+  }
+  const total = companies.length;
+  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  container.innerHTML = sorted.map(([cat, count]) => {
+    const pct = Math.round((count / total) * 100);
+    const color = INDUSTRY_COLORS[cat] || '#555';
+    const label = cat.charAt(0).toUpperCase() + cat.slice(1);
+    return `
+      <div class="tenant-card">
+        <div class="t-cat" style="color:${color}">${label}</div>
+        <div class="t-count">${count} tenant${count !== 1 ? 's' : ''} · ${pct}%</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+      </div>`;
+  }).join('');
+}
+
+function renderFacts(b, companies, forSale, forRent) {
+  const container = document.getElementById('facts-grid');
+  const facts = [
+    { key: 'Building Type', val: or(b.type, '—') },
+    { key: 'Total Units', val: or(b.totalUnits, '454') },
+    { key: 'Floors', val: or(b.floors, '—') },
+    { key: 'Completion', val: or(b.completionYear, '—') },
+    { key: 'Tenure', val: or(b.tenure, '—') },
+    { key: 'Developer', val: or(b.developer, '—') },
+    { key: 'Tenants Found', val: companies.length || '—' },
+    { key: 'For Sale', val: forSale.length || '—' },
+    { key: 'For Rent', val: forRent.length || '—' },
+    { key: 'Avg PSF', val: or((DATA && DATA.marketInsights || {}).avgSalePsf, '—') },
+  ];
+  container.innerHTML = facts.map(f => `
+    <div class="fact-box">
+      <div class="f-key">${f.key}</div>
+      <div class="f-val">${f.val}</div>
+    </div>`).join('');
+}
+
+// ── TABS ─────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── SEARCH ───────────────────────────────────────────────────────────────────
+document.getElementById('company-search').addEventListener('input', function () {
+  const q = this.value.toLowerCase().trim();
+  document.querySelectorAll('.company-card').forEach(card => {
+    const name = card.dataset.name || '';
+    const industry = card.dataset.industry || '';
+    card.style.display = (!q || name.includes(q) || industry.includes(q)) ? '' : 'none';
+  });
+});
+</script>
+
+</body>
+</html>
