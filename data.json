@@ -342,120 +342,45 @@
     }
   ],
   "forSale": [
-    {
-      "unit": "Ground Floor",
-      "size": "1,592 sqft",
-      "price": "S$1,150,000",
-      "psf": "S$722",
-      "notes": "Tenanted, ground floor",
-      "url": "https://www.commercialguru.com.sg/listing/21935518/for-sale-a-posh-bizhub"
-    },
-    {
-      "unit": "N/A",
-      "size": "1,582 sqft",
-      "price": "S$788,888",
-      "psf": "S$499",
-      "notes": "Sell with tenancy",
-      "url": "https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"
-    },
-    {
-      "unit": "N/A",
-      "size": "1,055 sqft",
-      "price": "S$795,000",
-      "psf": "S$754",
-      "notes": "",
-      "url": "https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"
-    },
-    {
-      "unit": "N/A",
-      "size": "1,658 sqft",
-      "price": "S$1,150,000",
-      "psf": "S$694",
-      "notes": "",
-      "url": "https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"
-    }
+    {"unit":"N/A","size":"1,658 sqft","price":"S$1,150,000","psf":"S$693.61","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"},
+    {"unit":"N/A","size":"1,582 sqft","price":"S$1,360,000","psf":"S$859.67","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"},
+    {"unit":"N/A","size":"2,831 sqft","price":"S$2,080,785","psf":"S$735.00","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"},
+    {"unit":"N/A","size":"1,550 sqft","price":"S$1,162,500","psf":"S$750.00","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"},
+    {"unit":"N/A","size":"1,281 sqft","price":"S$960,750","psf":"S$750.00","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"},
+    {"unit":"N/A","size":"1,055 sqft","price":"S$800,000","psf":"S$758.29","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"},
+    {"unit":"N/A","size":"1,978 sqft","price":"S$1,699,999","psf":"S$859.45","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"},
+    {"unit":"N/A","size":"1,658 sqft","price":"S$1,188,000","psf":"S$716.53","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"}
   ],
   "forRent": [
-    {
-      "unit": "N/A",
-      "size": "235 sqft",
-      "monthlyRent": "S$1,750",
-      "psf": "S$7.45",
-      "notes": "",
-      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-25052536"
-    },
-    {
-      "unit": "N/A",
-      "size": "300 sqft",
-      "monthlyRent": "S$1,850",
-      "psf": "S$6.17",
-      "notes": "",
-      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-24698269"
-    },
-    {
-      "unit": "N/A",
-      "size": "340 sqft",
-      "monthlyRent": "S$1,899",
-      "psf": "S$5.59",
-      "notes": "Utilities & wifi included, 2yr lease",
-      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-25140322"
-    },
-    {
-      "unit": "N/A",
-      "size": "358 sqft",
-      "monthlyRent": "S$1,550",
-      "psf": "S$4.33",
-      "notes": "Balcony, high ceiling, utilities & wifi included",
-      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-60074906"
-    },
-    {
-      "unit": "N/A",
-      "size": "435 sqft",
-      "monthlyRent": "S$1,850",
-      "psf": "S$4.25",
-      "notes": "Fitted, outdoor space, utilities & wifi included",
-      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-60192056"
-    },
-    {
-      "unit": "N/A",
-      "size": "450 sqft",
-      "monthlyRent": "S$2,950",
-      "psf": "S$6.56",
-      "notes": "With balcony",
-      "url": "https://www.99.co/singapore/rent/commercial/aposh-bizhub"
-    },
-    {
-      "unit": "N/A",
-      "size": "520 sqft",
-      "monthlyRent": "S$3,700",
-      "psf": "S$7.12",
-      "notes": "Full balcony access",
-      "url": "https://www.99.co/singapore/rent/commercial/aposh-bizhub"
-    },
-    {
-      "unit": "N/A",
-      "size": "600 sqft",
-      "monthlyRent": "S$3,700",
-      "psf": "S$6.17",
-      "notes": "Partial balcony",
-      "url": "https://www.99.co/singapore/rent/commercial/aposh-bizhub"
-    },
-    {
-      "unit": "N/A",
-      "size": "1,595 sqft",
-      "monthlyRent": "TBC",
-      "psf": "TBC",
-      "notes": "Available from 14 Apr 2026",
-      "url": "https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent/at-a-posh-bizhub-21297"
-    }
+    {"unit":"N/A","size":"76 sqft","monthlyRent":"S$550","psf":"S$7.24","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"144 sqft","monthlyRent":"S$1,100","psf":"S$7.64","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"180 sqft","monthlyRent":"S$1,080","psf":"S$6.00","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"190 sqft","monthlyRent":"S$1,080","psf":"S$5.68","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"200 sqft","monthlyRent":"S$1,100","psf":"S$5.50","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"206 sqft","monthlyRent":"S$1,080","psf":"S$5.24","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"220 sqft","monthlyRent":"S$1,300","psf":"S$5.91","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"233 sqft","monthlyRent":"S$1,280","psf":"S$5.49","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"235 sqft","monthlyRent":"S$1,750","psf":"S$7.45","notes":"","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-25052536"},
+    {"unit":"N/A","size":"300 sqft","monthlyRent":"S$1,800","psf":"S$6.00","notes":"","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-24698269"},
+    {"unit":"N/A","size":"315 sqft","monthlyRent":"S$1,400","psf":"S$4.44","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"320 sqft","monthlyRent":"S$1,650","psf":"S$5.16","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"340 sqft","monthlyRent":"S$1,899","psf":"S$5.59","notes":"Utilities & wifi included","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-25140322"},
+    {"unit":"N/A","size":"358 sqft","monthlyRent":"S$1,550","psf":"S$4.33","notes":"Balcony, high ceiling, utilities & wifi included","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-60074906"},
+    {"unit":"N/A","size":"435 sqft","monthlyRent":"S$1,850","psf":"S$4.25","notes":"Fitted, outdoor space, utilities & wifi included","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-60192056"},
+    {"unit":"N/A","size":"560 sqft","monthlyRent":"S$2,200","psf":"S$3.93","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"750 sqft","monthlyRent":"S$2,200","psf":"S$2.93","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"950 sqft","monthlyRent":"S$3,300","psf":"S$3.47","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"980 sqft","monthlyRent":"S$3,000","psf":"S$3.06","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"1,050 sqft","monthlyRent":"S$3,000","psf":"S$2.86","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"},
+    {"unit":"N/A","size":"1,658 sqft","monthlyRent":"S$4,500","psf":"S$2.71","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297&listingType=rent&isCommercial=true"}
   ],
   "marketInsights": {
-    "avgSalePsf": "S$694–S$860",
-    "avgRentPsf": "S$4.25–S$7.45",
-    "salePriceRange": "S$750K–S$2.08M",
-    "rentRange": "S$1,031–S$4,600/mo",
-    "unitsForSale": "12",
-    "unitsForRent": "41",
+    "avgSalePsf": "S$693–S$860",
+    "avgRentPsf": "S$2.71–S$7.64",
+    "salePriceRange": "S$800K–S$2.08M",
+    "rentRange": "S$550–S$4,500/mo",
+    "unitsForSale": "13",
+    "unitsForRent": "35",
     "trend": "Stable demand, 60-yr leasehold B1 industrial",
     "lastTransactionPsf": "S$632–S$690 (May–Nov 2025)"
   },
