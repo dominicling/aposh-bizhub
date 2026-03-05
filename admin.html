@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A'POSH BIZHUB — Admin</title>
+  <style>
+    :root {
+      --orange: #C84B0F;
+      --orange-light: #FDF3ED;
+      --black: #111;
+      --grey1: #f5f5f5;
+      --grey2: #e0e0e0;
+      --grey3: #999;
+      --grey4: #555;
+      --white: #fff;
+      --yellow: #fffde7;
+      --yellow-border: #f9a825;
+      --green: #2e7d32;
+      --red: #c62828;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f0f0f0; color: var(--black); }
+
+    /* ── GATE ── */
+    #gate {
+      position: fixed; inset: 0;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000;
+    }
+    .gate-box {
+      background: var(--white); border-radius: 12px;
+      padding: 40px; width: 360px; text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .gate-logo { font-size: 2rem; margin-bottom: 12px; }
+    .gate-box h2 { margin-bottom: 6px; font-size: 1.3rem; }
+    .gate-box p { color: var(--grey3); margin-bottom: 24px; font-size: 0.88rem; }
+    .gate-box input {
+      width: 100%; padding: 12px 16px;
+      border: 2px solid var(--grey2); border-radius: 8px;
+      font-size: 1.1rem; margin-bottom: 12px;
+      text-align: center; letter-spacing: 0.15em;
+    }
+    .gate-box input:focus { border-color: var(--orange); outline: none; }
+    .gate-box .unlock-btn {
+      width: 100%; padding: 12px;
+      background: var(--orange); color: white;
+      border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .gate-box .unlock-btn:hover { background: #a83d0a; }
+    #gate-error {
+      color: var(--red); font-size: 0.85rem;
+      margin-top: 10px; display: none;
+    }
+
+    /* ── MAIN ── */
+    #main { display: none; min-height: 100vh; }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--black); color: white;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .topbar-title { font-weight: 700; font-size: 1rem; }
+    .topbar-title span { color: var(--orange); }
+    .topbar-right { display: flex; align-items: center; gap: 10px; }
+    .btn-logout {
+      background: transparent; color: #aaa;
+      border: 1px solid #444; border-radius: 6px;
+      padding: 6px 14px; font-size: 0.8rem; cursor: pointer;
+    }
+    .btn-logout:hover { color: white; border-color: #888; }
+    .btn-export {
+      background: #2e7d32; color: white;
+      border: none; border-radius: 8px;
+      padding: 10px 22px; font-size: 0.88rem; font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-export:hover { background: #1b5e20; }
+
+    /* ── CONTENT ── */
+    .content { max-width: 1300px; margin: 0 auto; padding: 20px 16px 48px; }
+
+    .export-note {
+      background: #e8f5e9; border: 1px solid #a5d6a7;
+      border-radius: 8px; padding: 11px 16px;
+      margin-bottom: 16px; font-size: 0.83rem; color: #1b5e20;
+      line-height: 1.5;
+    }
+    .export-note code { background: rgba(0,0,0,0.07); padding: 2px 5px; border-radius: 3px; font-size: 0.82rem; }
+
+    /* ── STATS BANNER ── */
+    .stats-banner {
+      background: var(--yellow); border: 1px solid var(--yellow-border);
+      border-radius: 8px; padding: 11px 16px;
+      margin-bottom: 20px; font-size: 0.88rem; line-height: 1.5;
+    }
+    .stats-banner strong { color: var(--red); }
+
+    /* ── TABS ── */
+    .tabs { display: flex; border-bottom: 2px solid var(--grey2); margin-bottom: 20px; }
+    .tab-btn {
+      padding: 10px 20px; border: none; background: none;
+      font-size: 0.88rem; font-weight: 600; cursor: pointer;
+      color: var(--grey4); border-bottom: 3px solid transparent;
+      margin-bottom: -2px; transition: color 0.15s;
+    }
+    .tab-btn:hover { color: var(--orange); }
+    .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .section-title {
+      font-size: 1rem; font-weight: 700; margin-bottom: 14px; color: var(--black);
+    }
+
+    /* ── TABLE ── */
+    .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--grey2); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: white; }
+    thead th {
+      background: var(--black); color: white;
+      padding: 10px 12px; text-align: left;
+      font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    tbody tr { border-bottom: 1px solid var(--grey2); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody td { padding: 7px 10px; vertical-align: middle; }
+    tbody tr:hover > td { background: var(--grey1); }
+    tbody tr.row-missing > td { background: var(--yellow); }
+    tbody tr.row-missing:hover > td { background: #fff9c4; }
+    .missing-val { color: var(--grey3); font-style: italic; font-size: 0.82rem; }
+
+    /* edit-mode inputs inside table cells */
+    td input[type=text], td input[type=url], td input[type=tel] {
+      width: 100%; padding: 5px 8px;
+      border: 1.5px solid var(--orange); border-radius: 4px;
+      font-size: 0.84rem; min-width: 70px; background: #fffdf8;
+    }
+    td input:focus { outline: none; border-color: var(--black); background: white; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      padding: 5px 12px; border-radius: 4px; border: none;
+      font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-edit  { background: var(--orange-light); color: var(--orange); }
+    .btn-edit:hover  { background: var(--orange); color: white; }
+    .btn-save  { background: #1b5e20; color: white; }
+    .btn-save:hover  { background: #2e7d32; }
+    .btn-cancel { background: var(--grey1); color: var(--grey4); }
+    .btn-cancel:hover { background: var(--grey2); }
+    .btn-delete { background: #ffebee; color: var(--red); }
+    .btn-delete:hover { background: var(--red); color: white; }
+    .btn-group { display: flex; gap: 5px; }
+
+    .btn-add-row {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px; padding: 9px 18px;
+      background: #e8f5e9; color: var(--green);
+      border: 1.5px dashed var(--green); border-radius: 7px;
+      font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    }
+    .btn-add-row:hover { background: var(--green); color: white; }
+
+    /* ── BUILDING FORM ── */
+    .building-form {
+      background: white; border-radius: 8px;
+      border: 1px solid var(--grey2); padding: 24px;
+    }
+    .form-row { margin-bottom: 16px; }
+    .form-row label {
+      display: block; font-size: 0.76rem; font-weight: 700;
+      color: var(--grey4); text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 6px;
+    }
+    .form-row input, .form-row textarea {
+      width: 100%; padding: 9px 12px;
+      border: 1.5px solid var(--grey2); border-radius: 6px;
+      font-size: 0.9rem; font-family: inherit;
+      transition: border-color 0.15s;
+    }
+    .form-row input:focus, .form-row textarea:focus {
+      border-color: var(--orange); outline: none;
+    }
+    .form-row textarea { resize: vertical; min-height: 80px; }
+    .form-hint { font-size: 0.74rem; color: var(--grey3); margin-top: 4px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+    .form-actions { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+    .btn-form-save {
+      background: var(--orange); color: white;
+      border: none; border-radius: 8px;
+      padding: 10px 26px; font-size: 0.9rem; font-weight: 700; cursor: pointer;
+    }
+    .btn-form-save:hover { background: #a83d0a; }
+    .save-ok { display: none; color: var(--green); font-size: 0.85rem; font-weight: 600; }
+
+    /* F&B always-editable rows */
+    #fnb-tbody td input[type=text] { min-width: unset; }
+    .cb-cell { text-align: center; }
+    input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--orange); }
+
+    .num-cell { color: var(--grey3); font-size: 0.76rem; width: 28px; }
+
+    @media (max-width: 640px) {
+      .topbar { flex-wrap: wrap; gap: 8px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .btn-export { font-size: 0.8rem; padding: 8px 14px; }
+      .content { padding: 14px 10px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ PASSWORD GATE ══════════════ -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-logo">🔒</div>
+    <h2>Admin Access</h2>
+    <p>A'POSH BIZHUB Directory Editor</p>
+    <input type="password" id="pw-input" placeholder="Enter password" autocomplete="off">
+    <button class="unlock-btn" onclick="checkPassword()">Unlock</button>
+    <div id="gate-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<!-- ══════════════ MAIN EDITOR ══════════════ -->
+<div id="main">
+
+  <div class="topbar">
+    <div class="topbar-title">🏭 A'POSH BIZHUB <span>Admin</span></div>
+    <div class="topbar-right">
+      <button class="btn-logout" onclick="logout()">Log out</button>
+      <button class="btn-export" onclick="exportData()">⬇ Download updated data.json</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="export-note">
+      After downloading, replace <code>data.json</code> in your GitHub repo and run:<br>
+      <code>git add data.json &amp;&amp; git commit -m "fix: update company data" &amp;&amp; git push</code>
+    </div>
+
+    <div class="stats-banner" id="stats-banner">Loading data…</div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('companies', this)">
+        Companies (<span id="co-count">—</span>)
+      </button>
+      <button class="tab-btn" onclick="switchTab('building', this)">Building Info</button>
+      <button class="tab-btn" onclick="switchTab('fnb', this)">
+        F&amp;B (<span id="fnb-count">—</span>)
+      </button>
+    </div>
+
+    <!-- ── COMPANIES ── -->
+    <div id="tab-companies" class="tab-panel active">
+      <div class="section-title">Company Directory — click Edit on any row to change details</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Unit</th>
+              <th>Industry</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th style="width:90px">Action</th>
+            </tr>
+          </thead>
+          <tbody id="company-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── BUILDING ── -->
+    <div id="tab-building" class="tab-panel">
+      <div class="section-title">Building Information</div>
+      <div class="building-form">
+        <div class="form-row">
+          <label>Description</label>
+          <textarea id="b-description" rows="4"></textarea>
+        </div>
+        <div class="form-grid">
+          <div class="form-row">
+            <label>Developer</label>
+            <input id="b-developer" type="text">
+          </div>
+          <div class="form-row">
+            <label>Tenure</label>
+            <input id="b-tenure" type="text">
+          </div>
+          <div class="form-row">
+            <label>Floors</label>
+            <input id="b-floors" type="text">
+          </div>
+          <div class="form-row">
+            <label>Completion Year</label>
+            <input id="b-completionYear" type="text">
+          </div>
+          <div class="form-row">
+            <label>Total Units</label>
+            <input id="b-totalUnits" type="text">
+          </div>
+          <div class="form-row">
+            <label>Building Type</label>
+            <input id="b-type" type="text">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Nearby MRT Stations</label>
+          <textarea id="b-nearbyMRT" rows="4"></textarea>
+          <div class="form-hint">One entry per line, e.g. Yishun MRT (NS13)</div>
+        </div>
+        <div class="form-row">
+          <label>Bus Services</label>
+          <textarea id="b-busList" rows="5"></textarea>
+          <div class="form-hint">One entry per line, e.g. 59191 - Opposite Northland Secondary School</div>
+        </div>
+        <div class="form-row">
+          <label>Nearby Amenities</label>
+          <textarea id="b-amenities" rows="5"></textarea>
+          <div class="form-hint">One entry per line, e.g. Junction Nine</div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-form-save" onclick="saveBuilding()">Save Building Info</button>
+          <span class="save-ok" id="building-ok">✓ Saved in memory</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── F&B ── -->
+    <div id="tab-fnb" class="tab-panel">
+      <div class="section-title">F&amp;B Listings — all fields are editable inline</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Cuisine</th>
+              <th>Distance</th>
+              <th>Open Hours</th>
+              <th>Price</th>
+              <th>In Bldg</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="fnb-tbody"></tbody>
+        </table>
+      </div>
+      <button class="btn-add-row" onclick="addFnbRow()">＋ Add F&amp;B Entry</button>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+'use strict';
+const PASSWORD = 'aposh2024';
+let DATA = null;
+
+/* ─────────────── GATE ─────────────── */
+function checkPassword() {
+  const val = document.getElementById('pw-input').value;
+  if (val === PASSWORD) {
+    sessionStorage.setItem('admin_auth', '1');
+    unlockAdmin();
+  } else {
+    document.getElementById('gate-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+
+document.getElementById('pw-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+function unlockAdmin() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('main').style.display = 'block';
+  loadData();
+}
+
+function logout() {
+  sessionStorage.removeItem('admin_auth');
+  location.reload();
+}
+
+// Auto-unlock if already authenticated
+if (sessionStorage.getItem('admin_auth') === '1') unlockAdmin();
+
+/* ─────────────── DATA LOAD ─────────────── */
+function loadData() {
+  fetch('data.json?v=' + Date.now())
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(d => { DATA = d; renderAll(); })
+    .catch(() => {
+      const b = document.getElementById('stats-banner');
+      b.innerHTML = '⚠️ Could not load <code>data.json</code>. Open this page via GitHub Pages or a local server (e.g. <code>npx serve .</code> or VS Code Live Server).';
+      b.style.background = '#ffebee';
+      b.style.borderColor = '#ef9a9a';
+    });
+}
+
+function renderAll() {
+  updateStats();
+  renderCompanies();
+  renderBuildingForm();
+  renderFnbTable();
+  document.getElementById('co-count').textContent = DATA.companies.length;
+  document.getElementById('fnb-count').textContent = DATA.fnb.length;
+}
+
+/* ─────────────── STATS ─────────────── */
+function updateStats() {
+  if (!DATA) return;
+  const cs = DATA.companies;
+  const noUnit    = cs.filter(c => !c.unit).length;
+  const noPhone   = cs.filter(c => !c.phone).length;
+  const noWebsite = cs.filter(c => !c.website).length;
+  const parts = [];
+  if (noUnit)    parts.push(`<strong>${noUnit} missing unit</strong>`);
+  if (noPhone)   parts.push(`<strong>${noPhone} missing phone</strong>`);
+  if (noWebsite) parts.push(`<strong>${noWebsite} missing website</strong>`);
+  const b = document.getElementById('stats-banner');
+  if (parts.length) {
+    b.innerHTML = '⚠️ ' + parts.join(' &nbsp;·&nbsp; ') + ' &nbsp;— highlighted rows below need attention';
+    b.style.background = '';
+    b.style.borderColor = '';
+  } else {
+    b.innerHTML = '✅ All companies have unit number, phone, and website filled in!';
+    b.style.background = '#e8f5e9';
+    b.style.borderColor = '#a5d6a7';
+  }
+}
+
+/* ─────────────── TABS ─────────────── */
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ─────────────── COMPANIES ─────────────── */
+function hasMissing(c) {
+  return !c.unit || !c.phone || !c.website;
+}
+
+function esc(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;');
+}
+
+function renderCompanies() {
+  document.getElementById('company-tbody').innerHTML =
+    DATA.companies.map((c, i) => companyDisplayRow(c, i)).join('');
+}
+
+function companyDisplayRow(c, i) {
+  const cls = hasMissing(c) ? 'row-missing' : '';
+  const unit    = c.unit    || '<span class="missing-val">—</span>';
+  const phone   = c.phone   || '<span class="missing-val">—</span>';
+  const website = c.website
+    ? `<a href="${esc(c.website)}" target="_blank" style="color:var(--orange)">🔗 link</a>`
+    : '<span class="missing-val">—</span>';
+  const industry = c.industry || '<span class="missing-val">—</span>';
+  return `<tr id="crow-${i}" class="${cls}">
+    <td class="num-cell">${i+1}</td>
+    <td><strong>${esc(c.name)}</strong></td>
+    <td style="white-space:nowrap">${unit}</td>
+    <td style="font-size:0.81rem;color:var(--grey4)">${industry}</td>
+    <td style="font-size:0.82rem;white-space:nowrap">${phone}</td>
+    <td>${website}</td>
+    <td><button class="btn btn-edit" onclick="editCompany(${i})">Edit</button></td>
+  </tr>`;
+}
+
+function editCompany(i) {
+  const c = DATA.companies[i];
+  document.getElementById('crow-' + i).innerHTML = `
+    <td class="num-cell">${i+1}</td>
+    <td><input type="text" id="en-${i}" value="${esc(c.name)}" placeholder="Company name" style="min-width:140px"></td>
+    <td><input type="text" id="eu-${i}" value="${esc(c.unit)}" placeholder="#XX-YY" style="width:90px"></td>
+    <td><input type="text" id="ei-${i}" value="${esc(c.industry)}" placeholder="Industry" style="min-width:120px"></td>
+    <td><input type="tel"  id="ep-${i}" value="${esc(c.phone)}" placeholder="+65 XXXX XXXX" style="width:135px"></td>
+    <td><input type="url"  id="ew-${i}" value="${esc(c.website)}" placeholder="https://..." style="width:190px"></td>
+    <td>
+      <div class="btn-group">
+        <button class="btn btn-save"   onclick="saveCompany(${i})">Save</button>
+        <button class="btn btn-cancel" onclick="cancelCompany(${i})">✕</button>
+      </div>
+    </td>`;
+  document.getElementById('en-' + i).focus();
+}
+
+function saveCompany(i) {
+  DATA.companies[i].name     = document.getElementById('en-' + i).value.trim();
+  DATA.companies[i].unit     = document.getElementById('eu-' + i).value.trim();
+  DATA.companies[i].industry = document.getElementById('ei-' + i).value.trim();
+  DATA.companies[i].phone    = document.getElementById('ep-' + i).value.trim();
+  DATA.companies[i].website  = document.getElementById('ew-' + i).value.trim();
+  // Replace the row HTML (outerHTML swap)
+  const tbody = document.getElementById('company-tbody');
+  const row = document.getElementById('crow-' + i);
+  row.outerHTML = companyDisplayRow(DATA.companies[i], i);
+  updateStats();
+}
+
+function cancelCompany(i) {
+  document.getElementById('crow-' + i).outerHTML = companyDisplayRow(DATA.companies[i], i);
+}
+
+/* ─────────────── BUILDING ─────────────── */
+function renderBuildingForm() {
+  const b = DATA.building;
+  document.getElementById('b-description').value    = b.description    || '';
+  document.getElementById('b-developer').value      = b.developer      || '';
+  document.getElementById('b-tenure').value         = b.tenure         || '';
+  document.getElementById('b-floors').value         = b.floors         || '';
+  document.getElementById('b-completionYear').value = b.completionYear || '';
+  document.getElementById('b-totalUnits').value     = b.totalUnits     || '';
+  document.getElementById('b-type').value           = b.type           || '';
+  document.getElementById('b-nearbyMRT').value  = (b.nearbyMRT  || []).join('\n');
+  document.getElementById('b-busList').value    = (b.busList    || []).join('\n');
+  document.getElementById('b-amenities').value  = (b.amenities  || []).join('\n');
+}
+
+function saveBuilding() {
+  const b = DATA.building;
+  b.description    = document.getElementById('b-description').value.trim();
+  b.developer      = document.getElementById('b-developer').value.trim();
+  b.tenure         = document.getElementById('b-tenure').value.trim();
+  b.floors         = document.getElementById('b-floors').value.trim();
+  b.completionYear = document.getElementById('b-completionYear').value.trim();
+  b.totalUnits     = document.getElementById('b-totalUnits').value.trim();
+  b.type           = document.getElementById('b-type').value.trim();
+  const lines = id => document.getElementById(id).value.split('\n').map(s=>s.trim()).filter(Boolean);
+  b.nearbyMRT  = lines('b-nearbyMRT');
+  b.busList    = lines('b-busList');
+  b.amenities  = lines('b-amenities');
+  const ok = document.getElementById('building-ok');
+  ok.style.display = 'inline';
+  setTimeout(() => { ok.style.display = 'none'; }, 2500);
+}
+
+/* ─────────────── F&B ─────────────── */
+function renderFnbTable() {
+  document.getElementById('fnb-tbody').innerHTML =
+    DATA.fnb.map((f, i) => fnbRow(f, i)).join('');
+  document.getElementById('fnb-count').textContent = DATA.fnb.length;
+}
+
+function fnbRow(f, i) {
+  return `<tr id="frow-${i}">
+    <td class="num-cell">${i+1}</td>
+    <td><input type="text" value="${esc(f.name)}"       oninput="updFnb(${i},'name',this.value)"       placeholder="Name"       style="min-width:130px"></td>
+    <td><input type="text" value="${esc(f.type)}"       oninput="updFnb(${i},'type',this.value)"       placeholder="Type"       style="min-width:90px"></td>
+    <td><input type="text" value="${esc(f.cuisine)}"    oninput="updFnb(${i},'cuisine',this.value)"    placeholder="Cuisine"    style="min-width:110px"></td>
+    <td><input type="text" value="${esc(f.distance)}"   oninput="updFnb(${i},'distance',this.value)"   placeholder="~300m"      style="min-width:70px"></td>
+    <td><input type="text" value="${esc(f.openHours)}"  oninput="updFnb(${i},'openHours',this.value)"  placeholder="Hours"      style="min-width:110px"></td>
+    <td><input type="text" value="${esc(f.priceRange)}" oninput="updFnb(${i},'priceRange',this.value)" placeholder="$"          style="width:48px"></td>
+    <td class="cb-cell">
+      <input type="checkbox" ${f.inBuilding ? 'checked' : ''}
+        onchange="updFnb(${i},'inBuilding',this.checked)" title="In building?">
+    </td>
+    <td><button class="btn btn-delete" onclick="deleteFnb(${i})">Delete</button></td>
+  </tr>`;
+}
+
+function updFnb(i, field, value) {
+  DATA.fnb[i][field] = value;
+}
+
+function deleteFnb(i) {
+  if (!confirm('Delete "' + (DATA.fnb[i].name || 'this entry') + '"?')) return;
+  DATA.fnb.splice(i, 1);
+  renderFnbTable();
+}
+
+function addFnbRow() {
+  DATA.fnb.push({ name: '', type: '', cuisine: '', distance: '', openHours: '', priceRange: '$', inBuilding: false });
+  renderFnbTable();
+  const newIdx = DATA.fnb.length - 1;
+  const firstInput = document.querySelector(`#frow-${newIdx} input[type=text]`);
+  if (firstInput) {
+    firstInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    firstInput.focus();
+  }
+}
+
+/* ─────────────── EXPORT ─────────────── */
+function exportData() {
+  if (!DATA) { alert('No data loaded yet.'); return; }
+  const json = JSON.stringify(DATA, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'data.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
