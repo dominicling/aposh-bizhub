@@ -33,7 +33,7 @@
   },
   "companies": [
     {
-      "name": "The Potters",
+      "name": "The Potters world",
       "unit": "#06-17",
       "industry": "Pottery & Art Studio",
       "phone": "+65 9779 4111",
@@ -342,21 +342,112 @@
     }
   ],
   "forSale": [
-    {"unit":"Ground Floor","size":"1,592 sqft","price":"S$1,150,000","psf":"S$722","notes":"Tenanted, ground floor","url":"https://www.commercialguru.com.sg/listing/21935518/for-sale-a-posh-bizhub"},
-    {"unit":"N/A","size":"1,582 sqft","price":"S$788,888","psf":"S$499","notes":"Sell with tenancy","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"},
-    {"unit":"N/A","size":"1,055 sqft","price":"S$795,000","psf":"S$754","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"},
-    {"unit":"N/A","size":"1,658 sqft","price":"S$1,150,000","psf":"S$694","notes":"","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"}
+    {
+      "unit": "Ground Floor",
+      "size": "1,592 sqft",
+      "price": "S$1,150,000",
+      "psf": "S$722",
+      "notes": "Tenanted, ground floor",
+      "url": "https://www.commercialguru.com.sg/listing/21935518/for-sale-a-posh-bizhub"
+    },
+    {
+      "unit": "N/A",
+      "size": "1,582 sqft",
+      "price": "S$788,888",
+      "psf": "S$499",
+      "notes": "Sell with tenancy",
+      "url": "https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"
+    },
+    {
+      "unit": "N/A",
+      "size": "1,055 sqft",
+      "price": "S$795,000",
+      "psf": "S$754",
+      "notes": "",
+      "url": "https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"
+    },
+    {
+      "unit": "N/A",
+      "size": "1,658 sqft",
+      "price": "S$1,150,000",
+      "psf": "S$694",
+      "notes": "",
+      "url": "https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297"
+    }
   ],
   "forRent": [
-    {"unit":"N/A","size":"235 sqft","monthlyRent":"S$1,750","psf":"S$7.45","notes":"","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-25052536"},
-    {"unit":"N/A","size":"300 sqft","monthlyRent":"S$1,850","psf":"S$6.17","notes":"","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-24698269"},
-    {"unit":"N/A","size":"340 sqft","monthlyRent":"S$1,899","psf":"S$5.59","notes":"Utilities & wifi included, 2yr lease","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-25140322"},
-    {"unit":"N/A","size":"358 sqft","monthlyRent":"S$1,550","psf":"S$4.33","notes":"Balcony, high ceiling, utilities & wifi included","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-60074906"},
-    {"unit":"N/A","size":"435 sqft","monthlyRent":"S$1,850","psf":"S$4.25","notes":"Fitted, outdoor space, utilities & wifi included","url":"https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-60192056"},
-    {"unit":"N/A","size":"450 sqft","monthlyRent":"S$2,950","psf":"S$6.56","notes":"With balcony","url":"https://www.99.co/singapore/rent/commercial/aposh-bizhub"},
-    {"unit":"N/A","size":"520 sqft","monthlyRent":"S$3,700","psf":"S$7.12","notes":"Full balcony access","url":"https://www.99.co/singapore/rent/commercial/aposh-bizhub"},
-    {"unit":"N/A","size":"600 sqft","monthlyRent":"S$3,700","psf":"S$6.17","notes":"Partial balcony","url":"https://www.99.co/singapore/rent/commercial/aposh-bizhub"},
-    {"unit":"N/A","size":"1,595 sqft","monthlyRent":"TBC","psf":"TBC","notes":"Available from 14 Apr 2026","url":"https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent/at-a-posh-bizhub-21297"}
+    {
+      "unit": "N/A",
+      "size": "235 sqft",
+      "monthlyRent": "S$1,750",
+      "psf": "S$7.45",
+      "notes": "",
+      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-25052536"
+    },
+    {
+      "unit": "N/A",
+      "size": "300 sqft",
+      "monthlyRent": "S$1,850",
+      "psf": "S$6.17",
+      "notes": "",
+      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-24698269"
+    },
+    {
+      "unit": "N/A",
+      "size": "340 sqft",
+      "monthlyRent": "S$1,899",
+      "psf": "S$5.59",
+      "notes": "Utilities & wifi included, 2yr lease",
+      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-25140322"
+    },
+    {
+      "unit": "N/A",
+      "size": "358 sqft",
+      "monthlyRent": "S$1,550",
+      "psf": "S$4.33",
+      "notes": "Balcony, high ceiling, utilities & wifi included",
+      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-60074906"
+    },
+    {
+      "unit": "N/A",
+      "size": "435 sqft",
+      "monthlyRent": "S$1,850",
+      "psf": "S$4.25",
+      "notes": "Fitted, outdoor space, utilities & wifi included",
+      "url": "https://www.commercialguru.com.sg/listing/for-rent-a-posh-bizhub-60192056"
+    },
+    {
+      "unit": "N/A",
+      "size": "450 sqft",
+      "monthlyRent": "S$2,950",
+      "psf": "S$6.56",
+      "notes": "With balcony",
+      "url": "https://www.99.co/singapore/rent/commercial/aposh-bizhub"
+    },
+    {
+      "unit": "N/A",
+      "size": "520 sqft",
+      "monthlyRent": "S$3,700",
+      "psf": "S$7.12",
+      "notes": "Full balcony access",
+      "url": "https://www.99.co/singapore/rent/commercial/aposh-bizhub"
+    },
+    {
+      "unit": "N/A",
+      "size": "600 sqft",
+      "monthlyRent": "S$3,700",
+      "psf": "S$6.17",
+      "notes": "Partial balcony",
+      "url": "https://www.99.co/singapore/rent/commercial/aposh-bizhub"
+    },
+    {
+      "unit": "N/A",
+      "size": "1,595 sqft",
+      "monthlyRent": "TBC",
+      "psf": "TBC",
+      "notes": "Available from 14 Apr 2026",
+      "url": "https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent/at-a-posh-bizhub-21297"
+    }
   ],
   "marketInsights": {
     "avgSalePsf": "S$694–S$860",
