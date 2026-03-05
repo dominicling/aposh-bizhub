@@ -410,6 +410,88 @@
     "avgRentPsf": "S$4.25-S$7.12",
     "trend": "Recent transactions show S$690 psf (Nov 2025) for 1,550 sqft unit and S$632 psf (May 2025) for 1,668 sqft unit. 12 units for sale and 41 units for rent available as of Feb 2026."
   },
-  "fnb": [],
-  "crawledAt": "2026-03-05T16:33:32.862Z"
+  "fnb": [
+    {
+      "name": "Soon Hong Eating House",
+      "type": "Eating House",
+      "cuisine": "Local Singapore",
+      "distance": "In building (Level 1)",
+      "openHours": "Mon–Sat 7:00am–3:00pm",
+      "priceRange": "$",
+      "inBuilding": true
+    },
+    {
+      "name": "A'POSH BIZHUB Canteen",
+      "type": "Canteen",
+      "cuisine": "Mixed (Local)",
+      "distance": "In building (Level 1)",
+      "openHours": "Mon–Fri 7:30am–4:00pm",
+      "priceRange": "$",
+      "inBuilding": true
+    },
+    {
+      "name": "Kopitiam @ Blk 272 Yishun Ave 6",
+      "type": "Kopitiam / Coffee Shop",
+      "cuisine": "Local Singapore",
+      "distance": "~350m",
+      "openHours": "Daily 6:00am–10:00pm",
+      "priceRange": "$",
+      "inBuilding": false
+    },
+    {
+      "name": "Blk 925 Yishun Ave 9 Hawker Stalls",
+      "type": "Hawker / Coffee Shop",
+      "cuisine": "Mixed Local",
+      "distance": "~600m",
+      "openHours": "Daily 7:00am–9:00pm",
+      "priceRange": "$",
+      "inBuilding": false
+    },
+    {
+      "name": "1 More Square Food Court",
+      "type": "Food Court",
+      "cuisine": "Mixed — Local, Chinese, Malay, Indian",
+      "distance": "~1.5km (Yishun Ave 2)",
+      "openHours": "Daily 10:00am–9:30pm",
+      "priceRange": "$",
+      "inBuilding": false
+    },
+    {
+      "name": "Chong Pang Market & Food Centre",
+      "type": "Hawker Centre",
+      "cuisine": "Mixed — famous for satay, BBQ, seafood",
+      "distance": "~2km",
+      "openHours": "Daily 6:00am–10:00pm",
+      "priceRange": "$",
+      "inBuilding": false
+    },
+    {
+      "name": "Yishun Park Hawker Centre",
+      "type": "Hawker Centre",
+      "cuisine": "Mixed Local",
+      "distance": "~1.8km",
+      "openHours": "Daily 7:00am–10:00pm",
+      "priceRange": "$",
+      "inBuilding": false
+    },
+    {
+      "name": "Koufu Food Court @ Northpoint City",
+      "type": "Food Court",
+      "cuisine": "Mixed — Local, Japanese, Korean, Western",
+      "distance": "~2km (Northpoint City)",
+      "openHours": "Daily 9:00am–10:00pm",
+      "priceRange": "$–$$",
+      "inBuilding": false
+    },
+    {
+      "name": "McDonald's @ Northpoint City",
+      "type": "Fast Food",
+      "cuisine": "Western / Fast Food",
+      "distance": "~2km (Northpoint City)",
+      "openHours": "Daily 24 hours",
+      "priceRange": "$",
+      "inBuilding": false
+    }
+  ],
+  "crawledAt": "2026-03-06T08:00:00.000Z"
 }
