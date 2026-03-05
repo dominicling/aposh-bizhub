@@ -491,7 +491,195 @@
     }
     #site-footer a { color: var(--grey3); text-decoration: none; }
     #site-footer a:hover { color: var(--white); }
+
+    /* ── Invest tab shell ─────────────────────────────────── */
+    #invest-content {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      color: #1a1a1a;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 0 4rem;
+    }
+    .inv-section {
+      padding: 2.5rem 1.5rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .inv-section:last-child { border-bottom: none; }
+    .inv-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f97316;
+      margin-bottom: 0.4rem;
+    }
+    .inv-heading {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #111;
+      margin-bottom: 0.5rem;
+      line-height: 1.25;
+    }
+    .inv-subtext {
+      font-size: 0.875rem;
+      color: #6b7280;
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 1.5rem;
+    }
+    .inv-hero-band {
+      background: #111;
+      padding: 1.75rem 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .inv-hero-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(249,115,22,0.07) 59px,rgba(249,115,22,0.07) 60px);
+      pointer-events: none;
+    }
+    .inv-hero-stat {
+      padding: 0.75rem 1.25rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 1;
+    }
+    .inv-hero-stat:last-child { border-right: none; }
+    .inv-hero-num {
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #f97316;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .inv-hero-desc {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.35rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+    .inv-why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .inv-why-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1.25rem;
+      background: #fafafa;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .inv-why-card:hover { border-color: #f97316; transform: translateY(-2px); }
+    .inv-why-card-icon { font-size: 1.5rem; margin-bottom: 0.6rem; display: block; }
+    .inv-why-card-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .inv-why-card-body { font-size: 0.825rem; color: #6b7280; line-height: 1.6; }
+    .inv-yield-compare { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; max-width: 480px; }
+    .inv-yield-row { display: grid; grid-template-columns: 130px 1fr 60px; align-items: center; gap: 0.75rem; font-size: 0.8rem; }
+    .inv-yield-row-label { color: #6b7280; }
+    .inv-yield-bar-track { height: 8px; background: #f0f0f0; border-radius: 4px; overflow: hidden; }
+    .inv-yield-bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+    .inv-yield-bar-fill.orange { background: #f97316; }
+    .inv-yield-bar-fill.grey { background: #cbd5e1; }
+    .inv-yield-row-val { font-family: 'DM Mono', monospace; font-size: 0.8rem; font-weight: 700; text-align: right; }
+    .inv-compare-wrap { overflow-x: auto; margin-top: 1.5rem; border-radius: 12px; border: 1px solid #e5e7eb; }
+    .inv-compare-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 600px; }
+    .inv-compare-table th {
+      background: #111;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .inv-compare-table th.highlight-col { background: #f97316; color: #fff; }
+    .inv-compare-table td { padding: 0.65rem 1rem; border-bottom: 1px solid #f0f0f0; color: #374151; vertical-align: middle; }
+    .inv-compare-table td.highlight-col { background: #fff8f4; font-weight: 600; color: #111; border-left: 2px solid #f97316; border-right: 2px solid #f97316; }
+    .inv-compare-table tr:last-child td { border-bottom: none; }
+    .inv-compare-table tr:last-child td.highlight-col { border-bottom: 2px solid #f97316; }
+    .inv-compare-table .row-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #9ca3af; background: #fafafa; }
+    .inv-compare-table .row-label.highlight-col { background: #fff8f4; }
+    .inv-tag-warn { display: inline-block; background: #fef2f2; color: #dc2626; font-size: 0.65rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 4px; margin-left: 0.25rem; }
+    .inv-tag-best { display: inline-block; background: #fff7ed; color: #f97316; font-size: 0.65rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 4px; margin-left: 0.25rem; }
+    .inv-mono { font-family: 'DM Mono', monospace; font-size: 0.8rem; }
+    .inv-calc-wrap {
+      background: #111;
+      border-radius: 14px;
+      padding: 1.75rem;
+      color: #fff;
+      margin-top: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .inv-calc-wrap::after {
+      content: '{ yield }';
+      position: absolute;
+      right: 1.5rem;
+      top: 1.25rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.1);
+      letter-spacing: 0.1em;
+      pointer-events: none;
+    }
+    .inv-calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    @media (max-width: 540px) { .inv-calc-grid { grid-template-columns: 1fr; } }
+    .inv-calc-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.5rem; }
+    .inv-calc-value { font-family: 'DM Mono', monospace; font-size: 1.5rem; font-weight: 700; color: #f97316; margin-bottom: 0.5rem; }
+    input[type="range"].inv-slider { -webkit-appearance: none; width: 100%; height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; outline: none; cursor: pointer; }
+    input[type="range"].inv-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #f97316; cursor: pointer; box-shadow: 0 0 0 3px rgba(249,115,22,0.25); }
+    input[type="range"].inv-slider::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: #f97316; cursor: pointer; border: none; }
+    .inv-calc-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; margin-bottom: 1.25rem; }
+    @media (max-width: 480px) {
+      .inv-calc-results { grid-template-columns: 1fr; }
+      .inv-hero-band { grid-template-columns: 1fr; }
+      .inv-hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    }
+    .inv-calc-result-cell { background: rgba(255,255,255,0.04); padding: 1rem 1.25rem; text-align: center; }
+    .inv-calc-result-num { font-family: 'DM Mono', monospace; font-size: 1.6rem; font-weight: 700; color: #fff; line-height: 1; }
+    .inv-calc-result-num.accent { color: #f97316; }
+    .inv-calc-result-label { font-size: 0.65rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.4rem; }
+    .inv-preset-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .inv-preset-btn { font-size: 0.7rem; padding: 0.35rem 0.7rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .inv-preset-btn:hover, .inv-preset-btn.active { border-color: #f97316; color: #f97316; background: rgba(249,115,22,0.1); }
+    .inv-calc-disclaimer { font-size: 0.7rem; color: rgba(255,255,255,0.3); line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem; }
+    .inv-risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; margin-top: 1.25rem; }
+    .inv-risk-card { border: 1px solid #fee2e2; border-left: 3px solid #f97316; border-radius: 8px; padding: 1.1rem 1.25rem; background: #fffbfa; }
+    .inv-risk-title { font-size: 0.75rem; font-weight: 700; color: #111; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; }
+    .inv-risk-body { font-size: 0.8rem; color: #6b7280; line-height: 1.6; }
+    .inv-steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+    .inv-step-card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 1.25rem; text-decoration: none; display: block; background: #fff; transition: all 0.2s; position: relative; overflow: hidden; }
+    .inv-step-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #f97316; transform: scaleX(0); transition: transform 0.2s; transform-origin: left; }
+    .inv-step-card:hover { border-color: #f97316; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249,115,22,0.12); }
+    .inv-step-card:hover::before { transform: scaleX(1); }
+    .inv-step-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: #f97316; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .inv-step-title { font-size: 0.875rem; font-weight: 700; color: #111; margin-bottom: 0.3rem; }
+    .inv-step-desc { font-size: 0.775rem; color: #9ca3af; line-height: 1.5; }
+    .inv-step-arrow { position: absolute; right: 1.1rem; top: 50%; transform: translateY(-50%); color: #e5e7eb; font-size: 1.1rem; transition: color 0.2s; }
+    .inv-step-card:hover .inv-step-arrow { color: #f97316; }
+    .inv-source-note { font-size: 0.7rem; color: #d1d5db; text-align: right; padding: 0.5rem 1.5rem 0; }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -509,6 +697,7 @@
   <button class="tab-btn active" data-tab="visit">Visit &amp; Find</button>
   <button class="tab-btn" data-tab="space">Find Space</button>
   <button class="tab-btn" data-tab="owners">Owners</button>
+  <button class="tab-btn" data-tab="invest">Invest</button>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -675,6 +864,284 @@
       <div class="facts-grid" id="facts-grid"></div>
     </div>
   </div><!-- end tab-owners -->
+
+  <!-- TAB 4: INVEST -->
+  <div class="tab-panel" id="tab-invest">
+    <div id="invest-content">
+
+      <div class="inv-hero-band">
+        <div class="inv-hero-stat">
+          <div class="inv-hero-num">0%</div>
+          <div class="inv-hero-desc">ABSD on<br>industrial units</div>
+        </div>
+        <div class="inv-hero-stat">
+          <div class="inv-hero-num">4.5–5.5%</div>
+          <div class="inv-hero-desc">Gross yield,<br>B1 industrial S'pore</div>
+        </div>
+        <div class="inv-hero-stat">
+          <div class="inv-hero-num">+5.2%</div>
+          <div class="inv-hero-desc">Industrial price<br>index YoY, Q1 2025</div>
+        </div>
+      </div>
+
+      <div class="inv-section">
+        <div class="inv-label">Step 01 — The Asset Class</div>
+        <h2 class="inv-heading">Why industrial property?</h2>
+        <p class="inv-subtext">Industrial units occupy a structural advantage in Singapore's property market. No stamp duty penalties, no foreign ownership restrictions, and yields that consistently outpace residential — all in the same legal framework.</p>
+        <div class="inv-why-grid">
+          <div class="inv-why-card">
+            <span class="inv-why-card-icon">🚫</span>
+            <div class="inv-why-card-title">No ABSD. Ever.</div>
+            <div class="inv-why-card-body">Singaporeans buying a second home pay 20% ABSD. Foreigners pay 60%. Industrial units are exempt — making this the most tax-efficient way to expand a Singapore property portfolio.</div>
+          </div>
+          <div class="inv-why-card">
+            <span class="inv-why-card-icon">📈</span>
+            <div class="inv-why-card-title">Yield gap vs residential</div>
+            <div class="inv-yield-compare">
+              <div class="inv-yield-row">
+                <span class="inv-yield-row-label">B1 Industrial</span>
+                <div class="inv-yield-bar-track"><div class="inv-yield-bar-fill orange" style="width:80%"></div></div>
+                <span class="inv-yield-row-val" style="color:#f97316">~5%</span>
+              </div>
+              <div class="inv-yield-row">
+                <span class="inv-yield-row-label">Private condo</span>
+                <div class="inv-yield-bar-track"><div class="inv-yield-bar-fill grey" style="width:36%"></div></div>
+                <span class="inv-yield-row-val" style="color:#9ca3af">~2.3%</span>
+              </div>
+              <div class="inv-yield-row">
+                <span class="inv-yield-row-label">Shophouse</span>
+                <div class="inv-yield-bar-track"><div class="inv-yield-bar-fill grey" style="width:44%"></div></div>
+                <span class="inv-yield-row-val" style="color:#9ca3af">~2.8%</span>
+              </div>
+            </div>
+          </div>
+          <div class="inv-why-card">
+            <span class="inv-why-card-icon">🌏</span>
+            <div class="inv-why-card-title">Open to foreigners</div>
+            <div class="inv-why-card-body">Unlike residential, most B1 industrial units carry no foreign ownership restrictions. PR, EP holders, and foreign companies can all buy without special approvals.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-section">
+        <div class="inv-label">Step 02 — Location</div>
+        <h2 class="inv-heading">Why Yishun Industrial Street 1?</h2>
+        <p class="inv-subtext">This 600m stretch in District 27 hosts four B1 bizhub buildings — the densest concentration of strata-titled light industrial space in Singapore's north. Established sub-market with active agent coverage and consistent transaction volume year-round.</p>
+        <div class="inv-why-grid">
+          <div class="inv-why-card">
+            <span class="inv-why-card-icon">🚇</span>
+            <div class="inv-why-card-title">Three MRT Lines</div>
+            <div class="inv-why-card-body">Yishun (NS13), Canberra (NS12), and Khatib (NS14) all within reach. North-South Line connects directly to Orchard, City Hall, and Jurong East — covering the widest tenant demand pool.</div>
+          </div>
+          <div class="inv-why-card">
+            <span class="inv-why-card-icon">🛣️</span>
+            <div class="inv-why-card-title">Expressway Access</div>
+            <div class="inv-why-card-body">SLE, CTE, and BKE all accessible within minutes. Logistics tenants — who drive industrial rental demand — consistently prioritise expressway proximity above almost any other factor.</div>
+          </div>
+          <div class="inv-why-card">
+            <span class="inv-why-card-icon">🏙️</span>
+            <div class="inv-why-card-title">Northern Transformation</div>
+            <div class="inv-why-card-body">Northpoint City expansion, HDB estate rejuvenation, and the ongoing North Coast corridor development are all lifting the residential catchment around Yishun — increasing the pool of workers who live near their workplace.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-section">
+        <div class="inv-label">Step 03 — Competing Buildings</div>
+        <h2 class="inv-heading">How does A'POSH compare?</h2>
+        <p class="inv-subtext">Four B1 buildings sit on Yishun Industrial Street 1. Here's what the URA transaction data and building specs actually show.</p>
+        <div class="inv-compare-wrap">
+          <table class="inv-compare-table" aria-label="B1 building comparison, Yishun Industrial Street 1">
+            <thead>
+              <tr>
+                <th style="width:160px">Building</th>
+                <th class="highlight-col">A'POSH BIZHUB<br><span style="font-weight:400;opacity:.7;font-size:0.6rem;">11 Yishun Ind St 1</span></th>
+                <th>North Spring<br><span style="font-weight:400;opacity:.7;font-size:0.6rem;">5–9 Yishun Ind St 1</span></th>
+                <th>North Point<br><span style="font-weight:400;opacity:.7;font-size:0.6rem;">2 Yishun Ind St 1</span></th>
+                <th>North View<br><span style="font-weight:400;opacity:.7;font-size:0.6rem;">6 Yishun Ind St 1</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="row-label">Tenure</td>
+                <td class="highlight-col inv-mono">60yr / 2010</td>
+                <td class="inv-mono">60yr / 2011</td>
+                <td class="inv-mono">60yr / 2012</td>
+                <td class="inv-mono">30yr / 2012<span class="inv-tag-warn">⚠ short</span></td>
+              </tr>
+              <tr>
+                <td class="row-label">Est. remaining</td>
+                <td class="highlight-col inv-mono">~44 yrs</td>
+                <td class="inv-mono">~45 yrs</td>
+                <td class="inv-mono">~46 yrs</td>
+                <td class="inv-mono" style="color:#dc2626;font-weight:700">~16 yrs</td>
+              </tr>
+              <tr>
+                <td class="row-label">Total units</td>
+                <td class="highlight-col"><span class="inv-mono">454</span><span class="inv-tag-best">largest</span></td>
+                <td class="inv-mono">~200</td>
+                <td class="inv-mono">~150</td>
+                <td class="inv-mono">~150</td>
+              </tr>
+              <tr>
+                <td class="row-label">URA PSF (last 12m)</td>
+                <td class="highlight-col"><span class="inv-mono" style="color:#f97316">S$632–690</span><span class="inv-tag-best">highest</span></td>
+                <td class="inv-mono">S$567</td>
+                <td class="inv-mono">S$332–588</td>
+                <td class="inv-mono" style="color:#dc2626">S$221–295</td>
+              </tr>
+              <tr>
+                <td class="row-label">Asking PSF (listed)</td>
+                <td class="highlight-col inv-mono">S$691–860</td>
+                <td class="inv-mono">S$268–1,819*</td>
+                <td class="inv-mono">S$370–585</td>
+                <td class="inv-mono">—</td>
+              </tr>
+              <tr>
+                <td class="row-label">Rent range</td>
+                <td class="highlight-col inv-mono">S$1,031–4,600/mo</td>
+                <td class="inv-mono">—</td>
+                <td class="inv-mono">S$4,200–6,700/mo</td>
+                <td class="inv-mono">—</td>
+              </tr>
+              <tr>
+                <td class="row-label">Floor loading</td>
+                <td class="highlight-col"><span class="inv-mono">7.5 kN/sqm</span></td>
+                <td class="inv-mono">—</td>
+                <td class="inv-mono">—</td>
+                <td class="inv-mono">—</td>
+              </tr>
+              <tr>
+                <td class="row-label">Cargo lifts</td>
+                <td class="highlight-col"><span class="inv-mono">6</span><span class="inv-tag-best">most</span></td>
+                <td class="inv-mono">—</td>
+                <td class="inv-mono">—</td>
+                <td class="inv-mono">—</td>
+              </tr>
+              <tr>
+                <td class="row-label">Container access</td>
+                <td class="highlight-col inv-mono">40-ft ramp-up</td>
+                <td class="inv-mono">20-ft</td>
+                <td class="inv-mono">20-ft</td>
+                <td class="inv-mono">—</td>
+              </tr>
+              <tr>
+                <td class="row-label">Completed</td>
+                <td class="highlight-col inv-mono">2013</td>
+                <td class="inv-mono">2013</td>
+                <td class="inv-mono">2012</td>
+                <td class="inv-mono">2015</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.7rem;color:#9ca3af;margin-top:0.6rem;padding:0 0.25rem;">* North Spring's wide asking PSF range reflects different unit types and sizes within the same development. URA transacted PSF data from EdgeProp, last updated 2025–2026. North View's low PSF reflects its 30-year lease with ~16 years remaining — financing will be difficult for buyers.</p>
+      </div>
+
+      <div class="inv-section">
+        <div class="inv-label">Step 04 — Run the Numbers</div>
+        <h2 class="inv-heading">Yield calculator</h2>
+        <p class="inv-subtext">Adjust purchase price and expected monthly rent. The calculator shows gross yield, annual income, and estimated monthly mortgage at current rates.</p>
+        <div class="inv-calc-wrap">
+          <div class="inv-preset-btns">
+            <span style="font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;align-self:center;margin-right:0.25rem;">Presets:</span>
+            <button class="inv-preset-btn active" onclick="setPreset(800000, 3000, this)">Conservative</button>
+            <button class="inv-preset-btn" onclick="setPreset(900000, 3800, this)">Mid-range</button>
+            <button class="inv-preset-btn" onclick="setPreset(1200000, 5000, this)">High-spec unit</button>
+            <button class="inv-preset-btn" onclick="setPreset(750000, 2800, this)">Entry-level</button>
+          </div>
+          <div class="inv-calc-grid">
+            <div>
+              <div class="inv-calc-label">Purchase Price</div>
+              <div class="inv-calc-value" id="calc-price-display">S$800,000</div>
+              <input type="range" class="inv-slider" id="calc-price"
+                min="700000" max="2100000" step="50000" value="800000"
+                oninput="updateCalc()">
+              <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:rgba(255,255,255,0.25);margin-top:0.3rem;">
+                <span>S$700K</span><span>S$2.1M</span>
+              </div>
+            </div>
+            <div>
+              <div class="inv-calc-label">Monthly Rent (expected)</div>
+              <div class="inv-calc-value" id="calc-rent-display">S$3,000 / mo</div>
+              <input type="range" class="inv-slider" id="calc-rent"
+                min="1000" max="5000" step="100" value="3000"
+                oninput="updateCalc()">
+              <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:rgba(255,255,255,0.25);margin-top:0.3rem;">
+                <span>S$1,000</span><span>S$5,000</span>
+              </div>
+            </div>
+          </div>
+          <div class="inv-calc-results">
+            <div class="inv-calc-result-cell">
+              <div class="inv-calc-result-num accent" id="calc-yield">4.50%</div>
+              <div class="inv-calc-result-label">Gross Yield</div>
+            </div>
+            <div class="inv-calc-result-cell">
+              <div class="inv-calc-result-num" id="calc-annual">S$36,000</div>
+              <div class="inv-calc-result-label">Annual Rental Income</div>
+            </div>
+            <div class="inv-calc-result-cell">
+              <div class="inv-calc-result-num" id="calc-mortgage">S$4,610</div>
+              <div class="inv-calc-result-label">Est. Monthly Mortgage*</div>
+            </div>
+          </div>
+          <div class="inv-calc-disclaimer">
+            * Mortgage estimate assumes 80% LTV, 3.5% p.a. over 20 years, and subject to bank approval. Gross yield only — does not include stamp duty, legal fees, property tax (~10% AV), maintenance (~S$200–400/mo), or vacancy periods. This is not financial advice. Consult a licensed financial advisor and your bank before making any investment decision.
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-section">
+        <div class="inv-label">Step 05 — Know the Risks</div>
+        <h2 class="inv-heading">What to consider before buying</h2>
+        <p class="inv-subtext">Transparency here is not a liability — it's due diligence. These are the three factors every informed buyer should understand upfront.</p>
+        <div class="inv-risk-grid">
+          <div class="inv-risk-card">
+            <div class="inv-risk-title">⏳ Lease decay — ~44 years remaining</div>
+            <div class="inv-risk-body">A'POSH BIZHUB sits on a 60-year lease from 2010, leaving approximately 44 years as of 2026. Banks progressively tighten LTV ratios as remaining lease approaches 40 years. Buyers should discuss financing terms early and factor this into their exit horizon. This is not unusual for Yishun B1 buildings — all four on this street face the same profile.</div>
+          </div>
+          <div class="inv-risk-card">
+            <div class="inv-risk-title">📋 Industrial SSD applies</div>
+            <div class="inv-risk-body">Unlike some commercial property, Seller's Stamp Duty applies to B1/B2 industrial factory units. If you sell within 1 year: 15% SSD. Within 2 years: 10%. Within 3 years: 5%. After 3 years: 0%. This building is best suited to a holding period of 3+ years or long-term ownership — not short-term flipping.</div>
+          </div>
+          <div class="inv-risk-card">
+            <div class="inv-risk-title">📊 Macro headwinds in 2026</div>
+            <div class="inv-risk-body">MTI forecasts Singapore GDP growth of 1%–3% in 2026 amid US tariff uncertainty. Industrial rents are projected to grow moderately — up to 2% year-on-year — rather than sharply. Vacancy for multiple-user factories is stable at ~89% occupancy. A reasonable assumption for new buyers is steady income with modest capital appreciation, not rapid upside.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-section" style="border-bottom:none;">
+        <div class="inv-label">Step 06 — Take Action</div>
+        <h2 class="inv-heading">Ready to explore?</h2>
+        <p class="inv-subtext">Three paths forward — pick whichever matches where you are in the decision process.</p>
+        <div class="inv-steps-grid">
+          <a class="inv-step-card" href="https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297" target="_blank" rel="noopener">
+            <div class="inv-step-num">01 — BROWSE LISTINGS</div>
+            <div class="inv-step-title">See all units for sale</div>
+            <div class="inv-step-desc">13 active listings on CommercialGuru. S$750K–S$2.08M. Filter by size and floor.</div>
+            <span class="inv-step-arrow">→</span>
+          </a>
+          <a class="inv-step-card" href="https://www.edgeprop.sg/industrial/aposh-bizhub" target="_blank" rel="noopener">
+            <div class="inv-step-num">02 — VERIFY PRICES</div>
+            <div class="inv-step-title">URA transaction history</div>
+            <div class="inv-step-desc">EdgeProp shows all past transactions with dates, sizes, and PSF — directly from URA data.</div>
+            <span class="inv-step-arrow">→</span>
+          </a>
+          <a class="inv-step-card" href="tel:+6567489111">
+            <div class="inv-step-num">03 — SPEAK TO MANAGEMENT</div>
+            <div class="inv-step-title">OKH Global — +65 6748 9111</div>
+            <div class="inv-step-desc">Building manager for tenancy enquiries, maintenance, and building access questions.</div>
+            <span class="inv-step-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <p class="inv-source-note">Data: URA via EdgeProp · CommercialGuru · Cushman &amp; Wakefield · Savills Singapore · Vestige Realty · JTC. Updated March 2026. Not financial advice.</p>
+
+    </div><!-- end invest-content -->
+  </div><!-- end tab-invest -->
 
 </div><!-- end content -->
 
@@ -1026,6 +1493,48 @@ document.getElementById('company-search').addEventListener('input', function () 
       + '</details>';
   });
   container.innerHTML = html;
+})();
+</script>
+
+<script>
+(function() {
+  function formatSGDFull(n) {
+    return 'S$' + n.toLocaleString('en-SG');
+  }
+  function calcMortgage(principal, ltv, rate, years) {
+    var loan = principal * ltv;
+    var r = rate / 12;
+    var n = years * 12;
+    return loan * (r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1);
+  }
+  window.updateCalc = function() {
+    var price = parseInt(document.getElementById('calc-price').value);
+    var rent  = parseInt(document.getElementById('calc-rent').value);
+    document.getElementById('calc-price-display').textContent = formatSGDFull(price);
+    document.getElementById('calc-rent-display').textContent  = 'S$' + rent.toLocaleString('en-SG') + ' / mo';
+    var annual   = rent * 12;
+    var yieldPct = (annual / price * 100).toFixed(2);
+    var mortgage = calcMortgage(price, 0.80, 0.035, 20);
+    document.getElementById('calc-yield').textContent    = yieldPct + '%';
+    document.getElementById('calc-annual').textContent   = formatSGDFull(annual);
+    document.getElementById('calc-mortgage').textContent = 'S$' + Math.round(mortgage).toLocaleString('en-SG');
+    var yEl = document.getElementById('calc-yield');
+    var yv  = parseFloat(yieldPct);
+    yEl.style.color = yv >= 5 ? '#4ade80' : yv >= 4 ? '#f97316' : '#f87171';
+  };
+  window.setPreset = function(price, rent, btn) {
+    document.getElementById('calc-price').value = price;
+    document.getElementById('calc-rent').value  = rent;
+    document.querySelectorAll('.inv-preset-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    updateCalc();
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('calc-price')) updateCalc();
+  });
+  if (document.readyState !== 'loading') {
+    setTimeout(function() { if (document.getElementById('calc-price')) updateCalc(); }, 100);
+  }
 })();
 </script>
 
