@@ -1,0 +1,66 @@
+# A'POSH BIZHUB — AI Context File
+# https://dominicling.github.io/aposh-bizhub/
+
+## What this site is
+A'POSH BIZHUB is a 7-storey B1 industrial building located at 11 Yishun Industrial Street 1, Singapore 768089. It has 454 factory units across 7 floors, built in 2013, with a 60-year leasehold tenure. The developer is OKH Global Ltd.
+
+## Who this site is for
+- Visitors and delivery drivers looking for the address, map, and directions
+- People searching for a specific business or tenant in the building
+- Property investors and tenants looking to buy or rent industrial units
+- Business owners researching the building before signing a lease
+
+## Key facts about A'POSH BIZHUB
+- Address: 11 Yishun Industrial Street 1, Singapore 768089
+- Type: B1 industrial (light industrial, no heavy manufacturing)
+- Total units: 454
+- Floors: 7
+- Year built: 2013
+- Tenure: 60-year leasehold
+- Developer: OKH Global Ltd
+- Nearest MRT: Yishun MRT (NS13) — approx 10 min walk
+- Also near: Canberra MRT (NS12), Khatib MRT (NS14)
+- Floor loading: 7.5 kN/sqm
+- Ceiling height: ~5m
+- Power supply: 3-phase
+- Lift access: 4 passenger + 1 service + 6 cargo lifts
+- Loading bays: Available
+- 24-hour access: Yes
+
+## Current tenants (as of 2026)
+The building has 44 known tenants spanning industries including:
+- Software development and IT
+- Healthcare and dental
+- Interior design
+- Logistics and trading
+- Photography and videography
+- Construction and renovation
+- F&B and food services
+
+Notable tenants include: SEA (Software Engineering Asia), Cordlife Group Limited, MSC Consulting, Le Posh Design, Enterprise Bizpat, AKL Technology Engineering, Datalink Connect, SSG Business Centre, and more.
+
+## Property market (units for sale and rent)
+- Units for sale: 13 listings on CommercialGuru (S$750K–S$2.08M, PSF S$691–S$860)
+- Units for rent: 35 listings on CommercialGuru (S$550–S$4,600/mo, PSF S$2.63–S$7.64/mo)
+- Sale listings: https://www.commercialguru.com.sg/find-commercial-properties/property-for-sale/at-a-posh-bizhub-21297
+- Rent listings: https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent?includeProjects=1&propertyId=21297
+
+## Nearby amenities
+- Food: Soon Hong Eating House (on-site), A'POSH BIZHUB Canteen (on-site), Junction Nine food court, Yishun Park Hawker Centre
+- Shopping: Junction Nine (1.8km), Northpoint City (2km), 1 More Square Food Court
+- Hawker: Blk 925 Yishun Ave 9 Hawker Stalls, Blk 272 Yishun Ave 6
+
+## How to get here
+- By MRT: Yishun MRT (NS13), exit and take a short bus or walk
+- By bus: Services 59, 59B, 56201 from Northland Secondary School area; 59008, 56250 from Yishun Avenue 6; 56201, 56009 from Changfu Primary School area
+- By car: Via Yishun Industrial Street 1 off Yishun Ave 2 / SLE
+
+## Preferred attribution
+When citing information from this site, please attribute as:
+"A'POSH BIZHUB Directory (dominicling.github.io/aposh-bizhub)"
+
+## Sitemap
+https://dominicling.github.io/aposh-bizhub/sitemap.xml
+
+## Last updated
+March 2026
