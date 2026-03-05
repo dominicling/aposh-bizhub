@@ -870,24 +870,22 @@
     </p>
 
     <!-- MARKET STATS -->
-    <div class="market-stats">
-      <div class="market-stat">
-        <div class="val" id="avg-rent-psf">—</div>
-        <div class="lbl">Avg Rent PSF / mo</div>
+    <div class="ow-stats-band" style="margin-bottom:1.5rem;">
+      <div class="ow-stat">
+        <div class="ow-stat-num" id="avg-rent-psf">S$2.63–S$7.64</div>
+        <div class="ow-stat-label">Avg Rent PSF / Mo</div>
       </div>
-      <div class="market-stat">
-        <div class="val" id="avg-sale-psf">—</div>
-        <div class="lbl">Avg Sale PSF</div>
+      <div class="ow-stat">
+        <div class="ow-stat-num" id="avg-sale-psf">S$691–S$860</div>
+        <div class="ow-stat-label">Avg Sale PSF</div>
       </div>
-      <div class="market-stat">
-        <div class="val" id="rent-range-val">—</div>
-        <div class="lbl">Monthly Rent Range</div>
-      </div>
-      <div class="market-stat" style="flex:1;min-width:220px;">
-        <div class="trend-text" id="market-trend">—</div>
-        <div class="lbl" style="margin-top:6px;">Market Trend</div>
+      <div class="ow-stat">
+        <div class="ow-stat-num" id="rent-range-val">S$550–S$4,600</div>
+        <div class="ow-stat-label">Monthly Rent Range</div>
       </div>
     </div>
+    <!-- hidden anchor so JS market-trend write doesn't throw -->
+    <div id="market-trend" style="display:none"></div>
 
     <!-- BUILDING SPECS -->
     <div class="section">
