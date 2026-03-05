@@ -279,6 +279,19 @@
     }
     .see-all-btn:hover { background: var(--orange); color: var(--white); }
 
+    .show-more-btn {
+      padding: 10px 28px;
+      background: var(--white);
+      border: 1px solid var(--grey2);
+      border-radius: 8px;
+      color: var(--grey4);
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .show-more-btn:hover { background: var(--grey1); border-color: var(--orange); color: var(--orange); }
+
     /* TAB 3 — OWNERS */
     .owner-stats { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; }
     .owner-stat {
@@ -441,6 +454,10 @@
         <div class="val" id="avg-sale-psf">—</div>
         <div class="lbl">Avg Sale PSF</div>
       </div>
+      <div class="market-stat">
+        <div class="val" id="rent-range-val">—</div>
+        <div class="lbl">Monthly Rent Range</div>
+      </div>
       <div class="market-stat" style="flex:1;min-width:220px;">
         <div class="trend-text" id="market-trend">—</div>
         <div class="lbl" style="margin-top:6px;">Market Trend</div>
@@ -458,13 +475,13 @@
         <tr><td>Floors</td><td id="spec-floors">—</td></tr>
         <tr><td>Total Units</td><td id="spec-units">454</td></tr>
         <tr><td>Completion Year</td><td id="spec-year">—</td></tr>
+        <tr><td>Floor Loading</td><td>7.5 kN/sqm</td></tr>
+        <tr><td>Ceiling Height</td><td>~5m</td></tr>
+        <tr><td>Power Supply</td><td>3-phase</td></tr>
+        <tr><td>Lift Access</td><td>4 passenger + 1 service + 6 cargo lifts</td></tr>
+        <tr><td>Loading Bays</td><td>Available</td></tr>
+        <tr><td>24-hour Access</td><td>Yes</td></tr>
       </table>
-    </div>
-
-    <!-- AMENITIES -->
-    <div class="section">
-      <div class="section-title">Amenities</div>
-      <ul class="amenities-list" id="amenities-list"></ul>
     </div>
 
     <!-- LISTINGS -->
@@ -475,6 +492,9 @@
         <button class="toggle-btn" id="toggle-sale" onclick="showListings('sale')">For Sale</button>
       </div>
       <div class="units-grid" id="units-grid"></div>
+      <div id="show-more-wrap" style="display:none;text-align:center;margin:0 0 16px;">
+        <button class="show-more-btn" id="show-more-btn" onclick="showAllListings()">Show <span id="show-more-count">0</span> more →</button>
+      </div>
       <a class="see-all-btn" id="see-all-link"
         href="https://www.commercialguru.com.sg/find-commercial-properties/property-for-rent/at-a-posh-bizhub-21297"
         target="_blank" rel="noopener">See all listings on CommercialGuru →</a>
@@ -631,16 +651,10 @@ function render() {
   document.getElementById('spec-units').textContent = or(b.totalUnits, '454');
   document.getElementById('spec-year').textContent = or(b.completionYear, '—');
 
-  // Amenities
-  const amenList = document.getElementById('amenities-list');
-  const amenities = b.amenities && b.amenities.length
-    ? b.amenities
-    : ['Loading dock', 'Passenger lifts', 'Cargo lifts', '24-hour security', 'Car park'];
-  amenList.innerHTML = amenities.map(a => `<li>${a}</li>`).join('');
-
   // Market stats
   document.getElementById('avg-rent-psf').textContent = or(mi.avgRentPsf, '—');
   document.getElementById('avg-sale-psf').textContent = or(mi.avgSalePsf, '—');
+  document.getElementById('rent-range-val').textContent = or(mi.rentRange, '—');
   document.getElementById('market-trend').textContent = or(mi.trend, 'Market data will appear after the crawler runs.');
 
   // Listings
@@ -718,8 +732,21 @@ function renderFnbCards(fnb) {
     </div>`).join('');
 }
 
+let _listingsExpanded = false;
+
 function showListings(mode) {
   currentListingMode = mode;
+  _listingsExpanded = false;
+  _renderListings();
+}
+
+function showAllListings() {
+  _listingsExpanded = true;
+  _renderListings();
+}
+
+function _renderListings() {
+  const mode = currentListingMode;
   const forSale = DATA ? DATA.forSale || [] : [];
   const forRent = DATA ? DATA.forRent || [] : [];
 
@@ -733,20 +760,36 @@ function showListings(mode) {
 
   const units = mode === 'rent' ? forRent : forSale;
   const grid = document.getElementById('units-grid');
+  const showMoreWrap = document.getElementById('show-more-wrap');
 
   if (!units.length) {
     grid.innerHTML = '<p class="empty">No listing data yet — run the crawler to populate.</p>';
+    showMoreWrap.style.display = 'none';
     return;
   }
 
-  grid.innerHTML = units.map(u => `
+  const INITIAL = 8;
+  const visible = _listingsExpanded ? units : units.slice(0, INITIAL);
+  const psfLabel = mode === 'rent' ? 'psf/mo' : 'psf';
+
+  grid.innerHTML = visible.map(u => {
+    const hasUnit = u.unit && u.unit !== 'N/A' && u.unit !== '';
+    return `
     <a class="unit-card" href="${u.url || cgSeeAll}" target="_blank" rel="noopener">
-      <div class="u-num">${or(u.unit, 'Unit —')}</div>
+      ${hasUnit ? `<div class="u-num">${u.unit}</div>` : ''}
       <div class="u-size">${or(u.size, '—')}</div>
       <div class="u-price">${or(mode === 'rent' ? u.monthlyRent : u.price, '—')}</div>
-      ${u.psf && u.psf !== 'TBC' ? `<div class="u-psf">${u.psf} psf</div>` : ''}
+      ${u.psf && u.psf !== 'TBC' ? `<div class="u-psf">${u.psf} ${psfLabel}</div>` : ''}
       ${u.notes ? `<div class="u-psf" style="color:var(--grey4)">${u.notes}</div>` : ''}
-    </a>`).join('');
+    </a>`;
+  }).join('');
+
+  if (!_listingsExpanded && units.length > INITIAL) {
+    document.getElementById('show-more-count').textContent = units.length - INITIAL;
+    showMoreWrap.style.display = 'block';
+  } else {
+    showMoreWrap.style.display = 'none';
+  }
 }
 
 function renderTenantMix(companies) {
