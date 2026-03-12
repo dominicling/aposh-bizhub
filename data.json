@@ -15,10 +15,10 @@
       "Khatib MRT (NS14)"
     ],
     "busList": [
-      "59191 - Opposite Northland Secondary School",
-      "59199 - Blk 250, Yishun Avenue 6",
-      "59201 - Opposite Chongfu Primary School",
-      "59209 - Blk 272, Yishun Avenue 6"
+      {"stop": "Opp Northland Sec Sch (59191)", "buses": "670, 811, 861, 861A"},
+      {"stop": "Blk 250, Yishun Ave 6 (59199)", "buses": "670, 811, 811A, 861, 861B"},
+      {"stop": "Opp Chongfu Pri Sch (59201)", "buses": "670, 811, 861, 861A"},
+      {"stop": "Blk 272, Yishun Ave 6 (59209)", "buses": "670, 811, 811A, 861, 861B"}
     ],
     "amenities": [
       "Junction Nine",
