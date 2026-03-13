@@ -1,5 +1,5 @@
 # A'POSH BIZHUB — AI Context File
-# https://dominicling.github.io/aposh-bizhub/
+# https://aposhbizhub.com/
 
 ## What this site is
 A'POSH BIZHUB is a 7-storey B1 industrial building located at 11 Yishun Industrial Street 1, Singapore 768089. It has 454 factory units across 7 floors, built in 2013, with a 60-year leasehold tenure. The developer is OKH Global Ltd.
@@ -57,20 +57,20 @@ Notable tenants include: SEA (Software Engineering Asia), Cordlife Group Limited
 
 ## Preferred attribution
 When citing information from this site, please attribute as:
-"A'POSH BIZHUB Directory (dominicling.github.io/aposh-bizhub)"
+"A'POSH BIZHUB Directory (aposhbizhub.com)"
 
 ## Sitemap
-https://dominicling.github.io/aposh-bizhub/sitemap.xml
+https://aposhbizhub.com/sitemap.xml
 
 ## Last updated
 March 2026
 
 ## Blog
 
-Blog index: https://dominicling.github.io/aposh-bizhub/blog/
+Blog index: https://aposhbizhub.com/blog/
 
 ### Post: Yishun B1 Building Comparison (March 2026)
-URL: https://dominicling.github.io/aposh-bizhub/blog/yishun-b1-comparison.html
+URL: https://aposhbizhub.com/blog/yishun-b1-comparison.html
 Summary: Side-by-side comparison of all four B1 bizhub buildings on Yishun Industrial Street 1 using actual URA transaction data (2025–2026). Covers A'POSH BIZHUB, North Spring Bizhub, North Point Bizhub, and North View Bizhub. Includes lease remaining, transacted PSF, building specifications, and verdict by buyer type (investor, logistics tenant, owner-occupier). Key finding: A'POSH commands highest PSF (S$632–690) due to 40-ft container ramp-up access, 6 cargo lifts, and 454 units (largest in cluster). North View Bizhub warning: 30-year lease with ~16 years remaining, financing difficult.
 Published: 2026-03-06
 Topics: B1 industrial, Yishun, strata factory, PSF comparison, lease decay, industrial investment Singapore

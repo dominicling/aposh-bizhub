@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <url>
-    <loc>https://dominicling.github.io/aposh-bizhub/</loc>
-    <lastmod>2026-03-06</lastmod>
+    <loc>https://aposhbizhub.com/</loc>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-SG" href="https://aposhbizhub.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-SG" href="https://aposhbizhub.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aposhbizhub.com/"/>
   </url>
 
   <url>
-    <loc>https://dominicling.github.io/aposh-bizhub/index.html</loc>
-    <lastmod>2026-03-06</lastmod>
+    <loc>https://aposhbizhub.com/zh/</loc>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-SG" href="https://aposhbizhub.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-SG" href="https://aposhbizhub.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aposhbizhub.com/"/>
   </url>
 
   <url>
-    <loc>https://dominicling.github.io/aposh-bizhub/blog/</loc>
+    <loc>https://aposhbizhub.com/blog/</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://dominicling.github.io/aposh-bizhub/blog/yishun-b1-comparison.html</loc>
+    <loc>https://aposhbizhub.com/blog/yishun-b1-comparison.html</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
