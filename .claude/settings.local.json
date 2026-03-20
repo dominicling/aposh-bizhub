@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm init -y)",
-      "Bash(npm install node-fetch)"
+      "Bash(npm install node-fetch)",
+      "Bash(gh repo:*)"
     ]
   }
 }

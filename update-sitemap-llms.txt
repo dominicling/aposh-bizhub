@@ -1,0 +1,58 @@
+PASTE THIS INTO CLAUDE CODE:
+
+```
+Repo: C:\Users\USER\Documents\GitHub\aposh-bizhub
+
+Read sitemap.xml and llms.txt before making changes.
+
+
+## FIX 1 — UPDATE sitemap.xml
+
+Find sitemap.xml in the repo root.
+It currently lists only index.html (and possibly admin.html).
+
+Add these two new URLs to the <urlset> block, before the closing </urlset> tag:
+
+  <url>
+    <loc>https://dominicling.github.io/aposh-bizhub/blog/</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dominicling.github.io/aposh-bizhub/blog/yishun-b1-comparison.html</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+Also update the <lastmod> on the main index.html entry to 2026-03-06 if it exists.
+
+
+## FIX 2 — UPDATE llms.txt
+
+Find llms.txt in the repo root.
+Add these lines at the end of the file (before any closing section if one exists, otherwise just append):
+
+## Blog
+
+Blog index: https://dominicling.github.io/aposh-bizhub/blog/
+
+### Post: Yishun B1 Building Comparison (March 2026)
+URL: https://dominicling.github.io/aposh-bizhub/blog/yishun-b1-comparison.html
+Summary: Side-by-side comparison of all four B1 bizhub buildings on Yishun Industrial Street 1 using actual URA transaction data (2025–2026). Covers A'POSH BIZHUB, North Spring Bizhub, North Point Bizhub, and North View Bizhub. Includes lease remaining, transacted PSF, building specifications, and verdict by buyer type (investor, logistics tenant, owner-occupier). Key finding: A'POSH commands highest PSF (S$632–690) due to 40-ft container ramp-up access, 6 cargo lifts, and 454 units (largest in cluster). North View Bizhub warning: 30-year lease with ~16 years remaining, financing difficult.
+Published: 2026-03-06
+Topics: B1 industrial, Yishun, strata factory, PSF comparison, lease decay, industrial investment Singapore
+
+
+## COMMIT
+
+git add sitemap.xml llms.txt
+git commit -m "chore: add blog URLs to sitemap.xml and llms.txt"
+git push
+
+Report:
+1. How many <url> entries are now in sitemap.xml (should be 3 or more)
+2. Confirm the two blog URLs are present in sitemap.xml
+3. Confirm the Blog section is now in llms.txt
+```
